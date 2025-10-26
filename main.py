@@ -49,17 +49,17 @@ def main():
     print("🚀 Connexion au serveur Highrise...")
     print("=" * 60)
     
-    # Lancer le bot avec la méthode correcte
-    from highrise.__main__ import main as highrise_main
-    
-    # Configurer les arguments pour highrise
-    sys.argv = ['highrise', 'bot:HighriseBot', room_id, bot_token]
+    # Lancer le bot directement
+    from bot import HighriseBot
+    from highrise import run
     
     # Lancer le bot
     try:
-        highrise_main()
+        run(HighriseBot(), room_id, bot_token)
     except Exception as e:
         print(f"❌ Erreur: {e}")
+        import traceback
+        traceback.print_exc()
         sys.exit(1)
 
 if __name__ == "__main__":
