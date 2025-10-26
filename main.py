@@ -49,14 +49,15 @@ def main():
     print("🚀 Connexion au serveur Highrise...")
     print("=" * 60)
     
-    # Lancer le bot directement
+    # Lancer le bot avec aiohttp
     from bot import HighriseBot
-    import asyncio
+    from highrise import __main__ as hr_main
+    import aiohttp
     
     # Lancer le bot
     try:
-        bot = HighriseBot()
-        asyncio.run(bot.run(room_id, bot_token))
+        # Utiliser la méthode officielle du SDK
+        hr_main.main(HighriseBot, room_id, bot_token)
     except Exception as e:
         print(f"❌ Erreur: {e}")
         import traceback
