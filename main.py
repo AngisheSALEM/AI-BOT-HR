@@ -51,11 +51,12 @@ def main():
     
     # Lancer le bot directement
     from bot import HighriseBot
-    from highrise import run
+    import asyncio
     
     # Lancer le bot
     try:
-        run(HighriseBot(), room_id, bot_token)
+        bot = HighriseBot()
+        asyncio.run(bot.run(room_id, bot_token))
     except Exception as e:
         print(f"❌ Erreur: {e}")
         import traceback
