@@ -1,0 +1,1587 @@
+{
+  "items": [
+    {
+      "item_id": "watch-n_room32019blackwatch",
+      "item_name": "Classic Black Watch",
+      "category": "watch",
+      "color_linked_categories": [],
+      "color_palettes": [],
+      "created_at": "2019-02-05T22:51:13+00:00",
+      "description_key": null,
+      "gems_sale_price": null,
+      "inspired_by": [],
+      "is_purchasable": false,
+      "is_tradable": false,
+      "image_url": null,
+      "icon_url": null,
+      "link_ids": [],
+      "m_dependent_colors": [],
+      "m_front_skin_part_list": [
+        {
+          "bone": "L_Elbow",
+          "slot": "Watch",
+          "image_file": "front-watch-n_room32019blackwatch-Watch.vec",
+          "attachment_name": null,
+          "has_remote_render_layer": null
+        }
+      ],
+      "m_back_skin_part_list": [
+        {
+          "bone": "R_Elbow",
+          "slot": "Watch",
+          "image_file": "back-watch-n_room32019blackwatch-Watch.vec",
+          "attachment_name": null,
+          "has_remote_render_layer": null
+        }
+      ],
+      "m_hidden_skin_parts": [],
+      "pops_sale_price": 0,
+      "rarity": "none_",
+      "release_date": "2019-02-05T22:51:13+00:00",
+      "keywords": [
+        "classic",
+        "black",
+        "watch",
+        "table",
+        "headphones",
+        "camera",
+        "text",
+        "alarm",
+        "microphone",
+        "on-ear"
+      ]
+    },
+    {
+      "item_id": "sock-n_starteritems2020whitethighhighs",
+      "item_name": "White Thigh High Socks",
+      "category": "sock",
+      "color_linked_categories": [],
+      "color_palettes": [],
+      "created_at": "2020-09-24T00:37:04.966000+00:00",
+      "description_key": null,
+      "gems_sale_price": null,
+      "inspired_by": [],
+      "is_purchasable": false,
+      "is_tradable": false,
+      "image_url": null,
+      "icon_url": null,
+      "link_ids": [],
+      "m_dependent_colors": [],
+      "m_front_skin_part_list": [
+        {
+          "bone": "L_Hip",
+          "slot": "SockLeftUpper",
+          "image_file": "front-sock-n_starteritems2020whitethighhighs-SockLeftUpper.vec",
+          "attachment_name": null,
+          "has_remote_render_layer": false
+        },
+        {
+          "bone": "L_Knee",
+          "slot": "SockLeftLower",
+          "image_file": "front-sock-n_starteritems2020whitethighhighs-SockLeftLower.vec",
+          "attachment_name": null,
+          "has_remote_render_layer": false
+        },
+        {
+          "bone": "L_Ankle",
+          "slot": "SockLeftFoot",
+          "image_file": "front-sock-n_starteritems2020whitethighhighs-SockLeftFoot.vec",
+          "attachment_name": null,
+          "has_remote_render_layer": false
+        },
+        {
+          "bone": "R_Hip",
+          "slot": "SockRightUpper",
+          "image_file": "front-sock-n_starteritems2020whitethighhighs-SockRightUpper.vec",
+          "attachment_name": null,
+          "has_remote_render_layer": false
+        },
+        {
+          "bone": "R_Knee",
+          "slot": "SockRightLower",
+          "image_file": "front-sock-n_starteritems2020whitethighhighs-SockRightLower.vec",
+          "attachment_name": null,
+          "has_remote_render_layer": false
+        },
+        {
+          "bone": "R_Ankle",
+          "slot": "SockRightFoot",
+          "image_file": "front-sock-n_starteritems2020whitethighhighs-SockRightFoot.vec",
+          "attachment_name": null,
+          "has_remote_render_layer": false
+        }
+      ],
+      "m_back_skin_part_list": [
+        {
+          "bone": "L_Hip",
+          "slot": "SockLeftUpper",
+          "image_file": "back-sock-n_starteritems2020whitethighhighs-SockLeftUpper.vec",
+          "attachment_name": null,
+          "has_remote_render_layer": false
+        },
+        {
+          "bone": "R_Ankle",
+          "slot": "SockRightFoot",
+          "image_file": "back-sock-n_starteritems2020whitethighhighs-SockRightFoot.vec",
+          "attachment_name": null,
+          "has_remote_render_layer": false
+        },
+        {
+          "bone": "R_Knee",
+          "slot": "SockRightLower",
+          "image_file": "back-sock-n_starteritems2020whitethighhighs-SockRightLower.vec",
+          "attachment_name": null,
+          "has_remote_render_layer": false
+        },
+        {
+          "bone": "R_Hip",
+          "slot": "SockRightUpper",
+          "image_file": "back-sock-n_starteritems2020whitethighhighs-SockRightUpper.vec",
+          "attachment_name": null,
+          "has_remote_render_layer": false
+        },
+        {
+          "bone": "L_Ankle",
+          "slot": "SockLeftFoot",
+          "image_file": "back-sock-n_starteritems2020whitethighhighs-SockLeftFoot.vec",
+          "attachment_name": null,
+          "has_remote_render_layer": false
+        },
+        {
+          "bone": "L_Knee",
+          "slot": "SockLeftLower",
+          "image_file": "back-sock-n_starteritems2020whitethighhighs-SockLeftLower.vec",
+          "attachment_name": null,
+          "has_remote_render_layer": false
+        }
+      ],
+      "m_hidden_skin_parts": [],
+      "pops_sale_price": 0,
+      "rarity": "none_",
+      "release_date": "2020-09-24T00:37:04+00:00",
+      "keywords": [
+        "white",
+        "thigh high",
+        "socks",
+        "pair",
+        "ankle support",
+        "footwear",
+        "tall",
+        "short",
+        "table",
+        "clothing"
+      ]
+    },
+    {
+      "item_id": "sock-n_starteritems2020whitesocks",
+      "item_name": "White Socks",
+      "category": "sock",
+      "color_linked_categories": [],
+      "color_palettes": [],
+      "created_at": "2020-09-24T00:38:16.274000+00:00",
+      "description_key": null,
+      "gems_sale_price": null,
+      "inspired_by": [],
+      "is_purchasable": true,
+      "is_tradable": false,
+      "image_url": null,
+      "icon_url": null,
+      "link_ids": [],
+      "m_dependent_colors": [],
+      "m_front_skin_part_list": [
+        {
+          "bone": "R_Ankle",
+          "slot": "SockRightFoot",
+          "image_file": "front-sock-n_starteritems2020whitesocks-SockRightFoot.vec",
+          "attachment_name": null,
+          "has_remote_render_layer": false
+        },
+        {
+          "bone": "R_Knee",
+          "slot": "SockRightLower",
+          "image_file": "front-sock-n_starteritems2020whitesocks-SockRightLower.vec",
+          "attachment_name": null,
+          "has_remote_render_layer": false
+        },
+        {
+          "bone": "L_Ankle",
+          "slot": "SockLeftFoot",
+          "image_file": "front-sock-n_starteritems2020whitesocks-SockLeftFoot.vec",
+          "attachment_name": null,
+          "has_remote_render_layer": false
+        },
+        {
+          "bone": "L_Knee",
+          "slot": "SockLeftLower",
+          "image_file": "front-sock-n_starteritems2020whitesocks-SockLeftLower.vec",
+          "attachment_name": null,
+          "has_remote_render_layer": false
+        }
+      ],
+      "m_back_skin_part_list": [
+        {
+          "bone": "L_Knee",
+          "slot": "SockLeftLower",
+          "image_file": "back-sock-n_starteritems2020whitesocks-SockLeftLower.vec",
+          "attachment_name": null,
+          "has_remote_render_layer": false
+        },
+        {
+          "bone": "R_Ankle",
+          "slot": "SockRightFoot",
+          "image_file": "back-sock-n_starteritems2020whitesocks-SockRightFoot.vec",
+          "attachment_name": null,
+          "has_remote_render_layer": false
+        },
+        {
+          "bone": "R_Knee",
+          "slot": "SockRightLower",
+          "image_file": "back-sock-n_starteritems2020whitesocks-SockRightLower.vec",
+          "attachment_name": null,
+          "has_remote_render_layer": false
+        },
+        {
+          "bone": "L_Ankle",
+          "slot": "SockLeftFoot",
+          "image_file": "back-sock-n_starteritems2020whitesocks-SockLeftFoot.vec",
+          "attachment_name": null,
+          "has_remote_render_layer": false
+        }
+      ],
+      "m_hidden_skin_parts": [],
+      "pops_sale_price": 0,
+      "rarity": "none_",
+      "release_date": "2020-09-24T00:38:16+00:00",
+      "keywords": [
+        "white",
+        "socks",
+        "footwear",
+        "clothing",
+        "pair",
+        "two",
+        "black legs",
+        "gray toepads",
+        "different colors",
+        "top"
+      ]
+    },
+    {
+      "item_id": "sock-n_starteritems2020whitekneelength",
+      "item_name": "White Knee Length Socks",
+      "category": "sock",
+      "color_linked_categories": [],
+      "color_palettes": [],
+      "created_at": "2020-09-24T00:37:34.585000+00:00",
+      "description_key": null,
+      "gems_sale_price": null,
+      "inspired_by": [],
+      "is_purchasable": false,
+      "is_tradable": false,
+      "image_url": null,
+      "icon_url": null,
+      "link_ids": [],
+      "m_dependent_colors": [],
+      "m_front_skin_part_list": [
+        {
+          "bone": "R_Ankle",
+          "slot": "SockRightFoot",
+          "image_file": "front-sock-n_starteritems2020whitekneelength-SockRightFoot.vec",
+          "attachment_name": null,
+          "has_remote_render_layer": false
+        },
+        {
+          "bone": "R_Knee",
+          "slot": "SockRightLower",
+          "image_file": "front-sock-n_starteritems2020whitekneelength-SockRightLower.vec",
+          "attachment_name": null,
+          "has_remote_render_layer": false
+        },
+        {
+          "bone": "L_Ankle",
+          "slot": "SockLeftFoot",
+          "image_file": "front-sock-n_starteritems2020whitekneelength-SockLeftFoot.vec",
+          "attachment_name": null,
+          "has_remote_render_layer": false
+        },
+        {
+          "bone": "L_Knee",
+          "slot": "SockLeftLower",
+          "image_file": "front-sock-n_starteritems2020whitekneelength-SockLeftLower.vec",
+          "attachment_name": null,
+          "has_remote_render_layer": false
+        }
+      ],
+      "m_back_skin_part_list": [
+        {
+          "bone": "L_Knee",
+          "slot": "SockLeftLower",
+          "image_file": "back-sock-n_starteritems2020whitekneelength-SockLeftLower.vec",
+          "attachment_name": null,
+          "has_remote_render_layer": false
+        },
+        {
+          "bone": "R_Ankle",
+          "slot": "SockRightFoot",
+          "image_file": "back-sock-n_starteritems2020whitekneelength-SockRightFoot.vec",
+          "attachment_name": null,
+          "has_remote_render_layer": false
+        },
+        {
+          "bone": "R_Knee",
+          "slot": "SockRightLower",
+          "image_file": "back-sock-n_starteritems2020whitekneelength-SockRightLower.vec",
+          "attachment_name": null,
+          "has_remote_render_layer": false
+        },
+        {
+          "bone": "L_Ankle",
+          "slot": "SockLeftFoot",
+          "image_file": "back-sock-n_starteritems2020whitekneelength-SockLeftFoot.vec",
+          "attachment_name": null,
+          "has_remote_render_layer": false
+        }
+      ],
+      "m_hidden_skin_parts": [],
+      "pops_sale_price": 0,
+      "rarity": "none_",
+      "release_date": "2020-09-24T00:37:34+00:00",
+      "keywords": [
+        "white",
+        "knee length",
+        "socks",
+        "pair",
+        "striped",
+        "bottom",
+        "trim",
+        "side by side",
+        "surface",
+        "clothing"
+      ]
+    },
+    {
+      "item_id": "sock-n_starteritems2020blackthighhighs",
+      "item_name": "Black Thigh High Socks",
+      "category": "sock",
+      "color_linked_categories": [],
+      "color_palettes": [],
+      "created_at": "2020-09-24T00:36:49.519000+00:00",
+      "description_key": null,
+      "gems_sale_price": null,
+      "inspired_by": [],
+      "is_purchasable": false,
+      "is_tradable": false,
+      "image_url": null,
+      "icon_url": null,
+      "link_ids": [],
+      "m_dependent_colors": [],
+      "m_front_skin_part_list": [
+        {
+          "bone": "R_Ankle",
+          "slot": "SockRightFoot",
+          "image_file": "front-sock-n_starteritems2020blackthighhighs-SockRightFoot.vec",
+          "attachment_name": null,
+          "has_remote_render_layer": false
+        },
+        {
+          "bone": "R_Knee",
+          "slot": "SockRightLower",
+          "image_file": "front-sock-n_starteritems2020blackthighhighs-SockRightLower.vec",
+          "attachment_name": null,
+          "has_remote_render_layer": false
+        },
+        {
+          "bone": "R_Hip",
+          "slot": "SockRightUpper",
+          "image_file": "front-sock-n_starteritems2020blackthighhighs-SockRightUpper.vec",
+          "attachment_name": null,
+          "has_remote_render_layer": false
+        },
+        {
+          "bone": "L_Ankle",
+          "slot": "SockLeftFoot",
+          "image_file": "front-sock-n_starteritems2020blackthighhighs-SockLeftFoot.vec",
+          "attachment_name": null,
+          "has_remote_render_layer": false
+        },
+        {
+          "bone": "L_Knee",
+          "slot": "SockLeftLower",
+          "image_file": "front-sock-n_starteritems2020blackthighhighs-SockLeftLower.vec",
+          "attachment_name": null,
+          "has_remote_render_layer": false
+        },
+        {
+          "bone": "L_Hip",
+          "slot": "SockLeftUpper",
+          "image_file": "front-sock-n_starteritems2020blackthighhighs-SockLeftUpper.vec",
+          "attachment_name": null,
+          "has_remote_render_layer": false
+        }
+      ],
+      "m_back_skin_part_list": [
+        {
+          "bone": "R_Ankle",
+          "slot": "SockRightFoot",
+          "image_file": "back-sock-n_starteritems2020blackthighhighs-SockRightFoot.vec",
+          "attachment_name": null,
+          "has_remote_render_layer": false
+        },
+        {
+          "bone": "R_Knee",
+          "slot": "SockRightLower",
+          "image_file": "back-sock-n_starteritems2020blackthighhighs-SockRightLower.vec",
+          "attachment_name": null,
+          "has_remote_render_layer": false
+        },
+        {
+          "bone": "R_Hip",
+          "slot": "SockRightUpper",
+          "image_file": "back-sock-n_starteritems2020blackthighhighs-SockRightUpper.vec",
+          "attachment_name": null,
+          "has_remote_render_layer": false
+        },
+        {
+          "bone": "L_Ankle",
+          "slot": "SockLeftFoot",
+          "image_file": "back-sock-n_starteritems2020blackthighhighs-SockLeftFoot.vec",
+          "attachment_name": null,
+          "has_remote_render_layer": false
+        },
+        {
+          "bone": "L_Knee",
+          "slot": "SockLeftLower",
+          "image_file": "back-sock-n_starteritems2020blackthighhighs-SockLeftLower.vec",
+          "attachment_name": null,
+          "has_remote_render_layer": false
+        },
+        {
+          "bone": "L_Hip",
+          "slot": "SockLeftUpper",
+          "image_file": "back-sock-n_starteritems2020blackthighhighs-SockLeftUpper.vec",
+          "attachment_name": null,
+          "has_remote_render_layer": false
+        }
+      ],
+      "m_hidden_skin_parts": [],
+      "pops_sale_price": 0,
+      "rarity": "none_",
+      "release_date": "2020-09-24T00:36:49+00:00",
+      "keywords": [
+        "black",
+        "socks",
+        "thigh high",
+        "boots",
+        "pair",
+        "footwear",
+        "clothing",
+        "game item",
+        "female",
+        "highrise item"
+      ]
+    },
+    {
+      "item_id": "sock-n_starteritems2020blacksocks",
+      "item_name": "Black Socks",
+      "category": "sock",
+      "color_linked_categories": [],
+      "color_palettes": [],
+      "created_at": "2020-09-24T00:37:50.563000+00:00",
+      "description_key": null,
+      "gems_sale_price": null,
+      "inspired_by": [],
+      "is_purchasable": true,
+      "is_tradable": false,
+      "image_url": null,
+      "icon_url": null,
+      "link_ids": [],
+      "m_dependent_colors": [],
+      "m_front_skin_part_list": [
+        {
+          "bone": "R_Ankle",
+          "slot": "SockRightFoot",
+          "image_file": "front-sock-n_starteritems2020blacksocks-SockRightFoot.vec",
+          "attachment_name": null,
+          "has_remote_render_layer": false
+        },
+        {
+          "bone": "R_Knee",
+          "slot": "SockRightLower",
+          "image_file": "front-sock-n_starteritems2020blacksocks-SockRightLower.vec",
+          "attachment_name": null,
+          "has_remote_render_layer": false
+        },
+        {
+          "bone": "L_Ankle",
+          "slot": "SockLeftFoot",
+          "image_file": "front-sock-n_starteritems2020blacksocks-SockLeftFoot.vec",
+          "attachment_name": null,
+          "has_remote_render_layer": false
+        },
+        {
+          "bone": "L_Knee",
+          "slot": "SockLeftLower",
+          "image_file": "front-sock-n_starteritems2020blacksocks-SockLeftLower.vec",
+          "attachment_name": null,
+          "has_remote_render_layer": false
+        }
+      ],
+      "m_back_skin_part_list": [
+        {
+          "bone": "L_Knee",
+          "slot": "SockLeftLower",
+          "image_file": "back-sock-n_starteritems2020blacksocks-SockLeftLower.vec",
+          "attachment_name": null,
+          "has_remote_render_layer": false
+        },
+        {
+          "bone": "R_Ankle",
+          "slot": "SockRightFoot",
+          "image_file": "back-sock-n_starteritems2020blacksocks-SockRightFoot.vec",
+          "attachment_name": null,
+          "has_remote_render_layer": false
+        },
+        {
+          "bone": "R_Knee",
+          "slot": "SockRightLower",
+          "image_file": "back-sock-n_starteritems2020blacksocks-SockRightLower.vec",
+          "attachment_name": null,
+          "has_remote_render_layer": false
+        },
+        {
+          "bone": "L_Ankle",
+          "slot": "SockLeftFoot",
+          "image_file": "back-sock-n_starteritems2020blacksocks-SockLeftFoot.vec",
+          "attachment_name": null,
+          "has_remote_render_layer": false
+        }
+      ],
+      "m_hidden_skin_parts": [],
+      "pops_sale_price": 0,
+      "rarity": "none_",
+      "release_date": "2020-09-24T00:37:50+00:00",
+      "keywords": [
+        "black",
+        "socks",
+        "pair",
+        "two",
+        "boots",
+        "men",
+        "women",
+        "small",
+        "shoes",
+        "ankle"
+      ]
+    },
+    {
+      "item_id": "sock-n_starteritems2020blackkneelength",
+      "item_name": "Black Knee Length Socks",
+      "category": "sock",
+      "color_linked_categories": [],
+      "color_palettes": [],
+      "created_at": "2020-09-24T00:37:18.967000+00:00",
+      "description_key": null,
+      "gems_sale_price": null,
+      "inspired_by": [],
+      "is_purchasable": false,
+      "is_tradable": false,
+      "image_url": null,
+      "icon_url": null,
+      "link_ids": [],
+      "m_dependent_colors": [],
+      "m_front_skin_part_list": [
+        {
+          "bone": "R_Ankle",
+          "slot": "SockRightFoot",
+          "image_file": "front-sock-n_starteritems2020blackkneelength-SockRightFoot.vec",
+          "attachment_name": null,
+          "has_remote_render_layer": false
+        },
+        {
+          "bone": "R_Knee",
+          "slot": "SockRightLower",
+          "image_file": "front-sock-n_starteritems2020blackkneelength-SockRightLower.vec",
+          "attachment_name": null,
+          "has_remote_render_layer": false
+        },
+        {
+          "bone": "L_Ankle",
+          "slot": "SockLeftFoot",
+          "image_file": "front-sock-n_starteritems2020blackkneelength-SockLeftFoot.vec",
+          "attachment_name": null,
+          "has_remote_render_layer": false
+        },
+        {
+          "bone": "L_Knee",
+          "slot": "SockLeftLower",
+          "image_file": "front-sock-n_starteritems2020blackkneelength-SockLeftLower.vec",
+          "attachment_name": null,
+          "has_remote_render_layer": false
+        }
+      ],
+      "m_back_skin_part_list": [
+        {
+          "bone": "L_Knee",
+          "slot": "SockLeftLower",
+          "image_file": "back-sock-n_starteritems2020blackkneelength-SockLeftLower.vec",
+          "attachment_name": null,
+          "has_remote_render_layer": false
+        },
+        {
+          "bone": "R_Ankle",
+          "slot": "SockRightFoot",
+          "image_file": "back-sock-n_starteritems2020blackkneelength-SockRightFoot.vec",
+          "attachment_name": null,
+          "has_remote_render_layer": false
+        },
+        {
+          "bone": "R_Knee",
+          "slot": "SockRightLower",
+          "image_file": "back-sock-n_starteritems2020blackkneelength-SockRightLower.vec",
+          "attachment_name": null,
+          "has_remote_render_layer": false
+        },
+        {
+          "bone": "L_Ankle",
+          "slot": "SockLeftFoot",
+          "image_file": "back-sock-n_starteritems2020blackkneelength-SockLeftFoot.vec",
+          "attachment_name": null,
+          "has_remote_render_layer": false
+        }
+      ],
+      "m_hidden_skin_parts": [],
+      "pops_sale_price": 0,
+      "rarity": "none_",
+      "release_date": "2020-09-24T00:37:18+00:00",
+      "keywords": [
+        "black",
+        "knee length",
+        "socks",
+        "pair",
+        "ground",
+        "stripes",
+        "silver",
+        "white",
+        "men",
+        "women"
+      ]
+    },
+    {
+      "item_id": "sock-n_basic2021opaquetightswhite",
+      "item_name": "Opaque White Tights",
+      "category": "sock",
+      "color_linked_categories": [],
+      "color_palettes": [],
+      "created_at": "2021-09-17T18:55:05.959000+00:00",
+      "description_key": null,
+      "gems_sale_price": null,
+      "inspired_by": [],
+      "is_purchasable": false,
+      "is_tradable": false,
+      "image_url": null,
+      "icon_url": null,
+      "link_ids": [],
+      "m_dependent_colors": [],
+      "m_front_skin_part_list": [
+        {
+          "bone": "L_Hip",
+          "slot": "SockLeftUpper",
+          "image_file": "front-sock-n_basic2021opaquetightswhite-SockLeftUpper.vec",
+          "attachment_name": null,
+          "has_remote_render_layer": false
+        },
+        {
+          "bone": "R_Ankle",
+          "slot": "SockRightFoot",
+          "image_file": "front-sock-n_basic2021opaquetightswhite-SockRightFoot.vec",
+          "attachment_name": null,
+          "has_remote_render_layer": false
+        },
+        {
+          "bone": "R_Knee",
+          "slot": "SockRightLower",
+          "image_file": "front-sock-n_basic2021opaquetightswhite-SockRightLower.vec",
+          "attachment_name": null,
+          "has_remote_render_layer": false
+        },
+        {
+          "bone": "R_Hip",
+          "slot": "SockRightUpper",
+          "image_file": "front-sock-n_basic2021opaquetightswhite-SockRightUpper.vec",
+          "attachment_name": null,
+          "has_remote_render_layer": false
+        },
+        {
+          "bone": "CoreBody",
+          "slot": "TattooBody",
+          "image_file": "front-sock-n_basic2021opaquetightswhite-TattooBody.vec",
+          "attachment_name": null,
+          "has_remote_render_layer": false
+        },
+        {
+          "bone": "L_Ankle",
+          "slot": "SockLeftFoot",
+          "image_file": "front-sock-n_basic2021opaquetightswhite-SockLeftFoot.vec",
+          "attachment_name": null,
+          "has_remote_render_layer": false
+        },
+        {
+          "bone": "L_Knee",
+          "slot": "SockLeftLower",
+          "image_file": "front-sock-n_basic2021opaquetightswhite-SockLeftLower.vec",
+          "attachment_name": null,
+          "has_remote_render_layer": false
+        }
+      ],
+      "m_back_skin_part_list": [
+        {
+          "bone": "L_Hip",
+          "slot": "SockLeftUpper",
+          "image_file": "back-sock-n_basic2021opaquetightswhite-SockLeftUpper.vec",
+          "attachment_name": null,
+          "has_remote_render_layer": false
+        },
+        {
+          "bone": "L_Knee",
+          "slot": "SockLeftLower",
+          "image_file": "back-sock-n_basic2021opaquetightswhite-SockLeftLower.vec",
+          "attachment_name": null,
+          "has_remote_render_layer": false
+        },
+        {
+          "bone": "L_Ankle",
+          "slot": "SockLeftFoot",
+          "image_file": "back-sock-n_basic2021opaquetightswhite-SockLeftFoot.vec",
+          "attachment_name": null,
+          "has_remote_render_layer": false
+        },
+        {
+          "bone": "CoreBody",
+          "slot": "TattooBody",
+          "image_file": "back-sock-n_basic2021opaquetightswhite-TattooBody.vec",
+          "attachment_name": null,
+          "has_remote_render_layer": false
+        },
+        {
+          "bone": "R_Hip",
+          "slot": "SockRightUpper",
+          "image_file": "back-sock-n_basic2021opaquetightswhite-SockRightUpper.vec",
+          "attachment_name": null,
+          "has_remote_render_layer": false
+        },
+        {
+          "bone": "R_Knee",
+          "slot": "SockRightLower",
+          "image_file": "back-sock-n_basic2021opaquetightswhite-SockRightLower.vec",
+          "attachment_name": null,
+          "has_remote_render_layer": false
+        },
+        {
+          "bone": "R_Ankle",
+          "slot": "SockRightFoot",
+          "image_file": "back-sock-n_basic2021opaquetightswhite-SockRightFoot.vec",
+          "attachment_name": null,
+          "has_remote_render_layer": false
+        }
+      ],
+      "m_hidden_skin_parts": [],
+      "pops_sale_price": 0,
+      "rarity": "none_",
+      "release_date": "2021-10-17T18:55:05+00:00",
+      "keywords": [
+        "opaque",
+        "white",
+        "tights",
+        "sock",
+        "male",
+        "black shoes",
+        "mannequin",
+        "plastic",
+        "leggings",
+        "underwear"
+      ]
+    },
+    {
+      "item_id": "skirt-n_starteritems2018whiteskirt",
+      "item_name": "Basic Skirt - White",
+      "category": "skirt",
+      "color_linked_categories": [],
+      "color_palettes": [],
+      "created_at": "2019-01-17T02:44:50+00:00",
+      "description_key": null,
+      "gems_sale_price": null,
+      "inspired_by": [],
+      "is_purchasable": true,
+      "is_tradable": false,
+      "image_url": null,
+      "icon_url": null,
+      "link_ids": [],
+      "m_dependent_colors": [],
+      "m_front_skin_part_list": [
+        {
+          "bone": "CoreBody",
+          "slot": "Skirt",
+          "image_file": "front-skirt-n_starteritems2018whiteskirt-Skirt.vec",
+          "attachment_name": null,
+          "has_remote_render_layer": false
+        }
+      ],
+      "m_back_skin_part_list": [
+        {
+          "bone": "CoreBody",
+          "slot": "Skirt",
+          "image_file": "back-skirt-n_starteritems2018whiteskirt-Skirt.vec",
+          "attachment_name": null,
+          "has_remote_render_layer": false
+        }
+      ],
+      "m_hidden_skin_parts": [],
+      "pops_sale_price": 0,
+      "rarity": "none_",
+      "release_date": "2019-01-17T02:44:50+00:00",
+      "keywords": [
+        "basic",
+        "skirt",
+        "white",
+        "black belt",
+        "tennis",
+        "female",
+        "adjustable",
+        "matching buttons",
+        "short",
+        "fashion"
+      ]
+    },
+    {
+      "item_id": "skirt-n_starteritems2018blueskirt",
+      "item_name": "Basic Skirt - Blue",
+      "category": "skirt",
+      "color_linked_categories": [],
+      "color_palettes": [],
+      "created_at": "2019-01-17T02:43:43+00:00",
+      "description_key": null,
+      "gems_sale_price": null,
+      "inspired_by": [],
+      "is_purchasable": true,
+      "is_tradable": false,
+      "image_url": null,
+      "icon_url": null,
+      "link_ids": [],
+      "m_dependent_colors": [],
+      "m_front_skin_part_list": [
+        {
+          "bone": "CoreBody",
+          "slot": "Skirt",
+          "image_file": "front-skirt-n_starteritems2018blueskirt-Skirt.vec",
+          "attachment_name": null,
+          "has_remote_render_layer": false
+        }
+      ],
+      "m_back_skin_part_list": [
+        {
+          "bone": "CoreBody",
+          "slot": "Skirt",
+          "image_file": "back-skirt-n_starteritems2018blueskirt-Skirt.vec",
+          "attachment_name": null,
+          "has_remote_render_layer": false
+        }
+      ],
+      "m_hidden_skin_parts": [],
+      "pops_sale_price": 0,
+      "rarity": "none_",
+      "release_date": "2019-01-17T02:43:43+00:00",
+      "keywords": [
+        "basic",
+        "skirt",
+        "blue",
+        "short",
+        "belt",
+        "tennis",
+        "female",
+        "shorts",
+        "black accents",
+        "man"
+      ]
+    },
+    {
+      "item_id": "skirt-n_starteritems2018blackskirt",
+      "item_name": "Basic Skirt - Black",
+      "category": "skirt",
+      "color_linked_categories": [],
+      "color_palettes": [],
+      "created_at": "2019-01-17T02:42:18+00:00",
+      "description_key": null,
+      "gems_sale_price": null,
+      "inspired_by": [],
+      "is_purchasable": true,
+      "is_tradable": false,
+      "image_url": null,
+      "icon_url": null,
+      "link_ids": [],
+      "m_dependent_colors": [],
+      "m_front_skin_part_list": [
+        {
+          "bone": "CoreBody",
+          "slot": "Skirt",
+          "image_file": "front-skirt-n_starteritems2018blackskirt-Skirt.vec",
+          "attachment_name": null,
+          "has_remote_render_layer": false
+        }
+      ],
+      "m_back_skin_part_list": [
+        {
+          "bone": "CoreBody",
+          "slot": "Skirt",
+          "image_file": "back-skirt-n_starteritems2018blackskirt-Skirt.vec",
+          "attachment_name": null,
+          "has_remote_render_layer": false
+        }
+      ],
+      "m_hidden_skin_parts": [],
+      "pops_sale_price": 0,
+      "rarity": "none_",
+      "release_date": "2019-01-17T02:42:18+00:00",
+      "keywords": [
+        "black",
+        "skirt",
+        "female",
+        "belt",
+        "short",
+        "basic",
+        "outfit",
+        "clothing",
+        "buttons",
+        "circle"
+      ]
+    },
+    {
+      "item_id": "skirt-n_room22019skirtwithsocksplaid",
+      "item_name": "Plaid Skirt With Socks",
+      "category": "skirt",
+      "color_linked_categories": [],
+      "color_palettes": [],
+      "created_at": "2019-01-24T00:44:58+00:00",
+      "description_key": null,
+      "gems_sale_price": null,
+      "inspired_by": [],
+      "is_purchasable": false,
+      "is_tradable": true,
+      "image_url": null,
+      "icon_url": null,
+      "link_ids": [],
+      "m_dependent_colors": [],
+      "m_front_skin_part_list": [
+        {
+          "bone": "CoreBody",
+          "slot": "Skirt",
+          "image_file": "front-skirt-n_room22019skirtwithsocksplaid-Skirt.vec",
+          "attachment_name": null,
+          "has_remote_render_layer": null
+        },
+        {
+          "bone": "R_Hip",
+          "slot": "SkirtRightUpper",
+          "image_file": "front-skirt-n_room22019skirtwithsocksplaid-SkirtRightUpper.vec",
+          "attachment_name": null,
+          "has_remote_render_layer": null
+        },
+        {
+          "bone": "L_Knee",
+          "slot": "SkirtLeftLower",
+          "image_file": "front-skirt-n_room22019skirtwithsocksplaid-SkirtLeftLower.vec",
+          "attachment_name": null,
+          "has_remote_render_layer": null
+        },
+        {
+          "bone": "R_Knee",
+          "slot": "SkirtRightLower",
+          "image_file": "front-skirt-n_room22019skirtwithsocksplaid-SkirtRightLower.vec",
+          "attachment_name": null,
+          "has_remote_render_layer": null
+        },
+        {
+          "bone": "L_Hip",
+          "slot": "SkirtLeftUpper",
+          "image_file": "front-skirt-n_room22019skirtwithsocksplaid-SkirtLeftUpper.vec",
+          "attachment_name": null,
+          "has_remote_render_layer": null
+        }
+      ],
+      "m_back_skin_part_list": [
+        {
+          "bone": "R_Knee",
+          "slot": "SkirtRightLower",
+          "image_file": "back-skirt-n_room22019skirtwithsocksplaid-SkirtRightLower.vec",
+          "attachment_name": null,
+          "has_remote_render_layer": null
+        },
+        {
+          "bone": "L_Hip",
+          "slot": "SkirtLeftUpper",
+          "image_file": "back-skirt-n_room22019skirtwithsocksplaid-SkirtLeftUpper.vec",
+          "attachment_name": null,
+          "has_remote_render_layer": null
+        },
+        {
+          "bone": "R_Hip",
+          "slot": "SkirtRightUpper",
+          "image_file": "back-skirt-n_room22019skirtwithsocksplaid-SkirtRightUpper.vec",
+          "attachment_name": null,
+          "has_remote_render_layer": null
+        },
+        {
+          "bone": "L_Knee",
+          "slot": "SkirtLeftLower",
+          "image_file": "back-skirt-n_room22019skirtwithsocksplaid-SkirtLeftLower.vec",
+          "attachment_name": null,
+          "has_remote_render_layer": null
+        },
+        {
+          "bone": "CoreBody",
+          "slot": "Skirt",
+          "image_file": "back-skirt-n_room22019skirtwithsocksplaid-Skirt.vec",
+          "attachment_name": null,
+          "has_remote_render_layer": null
+        }
+      ],
+      "m_hidden_skin_parts": [],
+      "pops_sale_price": 100,
+      "rarity": "none_",
+      "release_date": "2019-01-24T00:44:58+00:00",
+      "keywords": [
+        "plaid",
+        "skirt",
+        "socks",
+        "female",
+        "black",
+        "red",
+        "stockings",
+        "knee high",
+        "buckles",
+        "boots"
+      ]
+    },
+    {
+      "item_id": "skirt-n_room12019pleatedskirtpink",
+      "item_name": "Pleated Pink Skirt",
+      "category": "skirt",
+      "color_linked_categories": [],
+      "color_palettes": [],
+      "created_at": "2019-01-21T22:19:39+00:00",
+      "description_key": null,
+      "gems_sale_price": null,
+      "inspired_by": [],
+      "is_purchasable": false,
+      "is_tradable": false,
+      "image_url": null,
+      "icon_url": null,
+      "link_ids": [],
+      "m_dependent_colors": [],
+      "m_front_skin_part_list": [
+        {
+          "bone": "CoreBody",
+          "slot": "Skirt",
+          "image_file": "front-skirt-n_room12019pleatedskirtpink-Skirt.vec",
+          "attachment_name": null,
+          "has_remote_render_layer": null
+        }
+      ],
+      "m_back_skin_part_list": [
+        {
+          "bone": "CoreBody",
+          "slot": "Skirt",
+          "image_file": "back-skirt-n_room12019pleatedskirtpink-Skirt.vec",
+          "attachment_name": null,
+          "has_remote_render_layer": null
+        }
+      ],
+      "m_hidden_skin_parts": [],
+      "pops_sale_price": 0,
+      "rarity": "none_",
+      "release_date": "2019-01-21T22:19:39+00:00",
+      "keywords": [
+        "pink",
+        "skirt",
+        "pleated",
+        "ruffled",
+        "tennis skirt",
+        "table",
+        "dark background",
+        "character",
+        "fashion",
+        "icon"
+      ]
+    },
+    {
+      "item_id": "skirt-n_room12019pleatedskirtgrey",
+      "item_name": "Pleated Skirt Grey",
+      "category": "skirt",
+      "color_linked_categories": [],
+      "color_palettes": [],
+      "created_at": "2020-03-11T21:59:46+00:00",
+      "description_key": null,
+      "gems_sale_price": null,
+      "inspired_by": [],
+      "is_purchasable": false,
+      "is_tradable": false,
+      "image_url": null,
+      "icon_url": null,
+      "link_ids": [],
+      "m_dependent_colors": [],
+      "m_front_skin_part_list": [
+        {
+          "bone": "CoreBody",
+          "slot": "Skirt",
+          "image_file": "front-skirt-n_room12019pleatedskirtgrey-Skirt.vec",
+          "attachment_name": null,
+          "has_remote_render_layer": null
+        }
+      ],
+      "m_back_skin_part_list": [
+        {
+          "bone": "CoreBody",
+          "slot": "Skirt",
+          "image_file": "back-skirt-n_room12019pleatedskirtgrey-Skirt.vec",
+          "attachment_name": null,
+          "has_remote_render_layer": null
+        }
+      ],
+      "m_hidden_skin_parts": [],
+      "pops_sale_price": 0,
+      "rarity": "none_",
+      "release_date": "2020-03-11T21:59:46+00:00",
+      "keywords": [
+        "pleated",
+        "skirt",
+        "grey",
+        "fashion",
+        "apparel",
+        "table",
+        "computer monitor",
+        "tennis racket",
+        "tennis ball",
+        "standing"
+      ]
+    },
+    {
+      "item_id": "skirt-n_room12019pleatedskirtblack",
+      "item_name": "Pleated Black Skirt",
+      "category": "skirt",
+      "color_linked_categories": [],
+      "color_palettes": [],
+      "created_at": "2019-01-21T22:18:05+00:00",
+      "description_key": null,
+      "gems_sale_price": null,
+      "inspired_by": [],
+      "is_purchasable": false,
+      "is_tradable": false,
+      "image_url": null,
+      "icon_url": null,
+      "link_ids": [],
+      "m_dependent_colors": [],
+      "m_front_skin_part_list": [
+        {
+          "bone": "CoreBody",
+          "slot": "Skirt",
+          "image_file": "front-skirt-n_room12019pleatedskirtblack-Skirt.vec",
+          "attachment_name": null,
+          "has_remote_render_layer": null
+        }
+      ],
+      "m_back_skin_part_list": [
+        {
+          "bone": "CoreBody",
+          "slot": "Skirt",
+          "image_file": "back-skirt-n_room12019pleatedskirtblack-Skirt.vec",
+          "attachment_name": null,
+          "has_remote_render_layer": null
+        }
+      ],
+      "m_hidden_skin_parts": [],
+      "pops_sale_price": 0,
+      "rarity": "none_",
+      "release_date": "2019-01-21T22:18:05+00:00",
+      "keywords": [
+        "black",
+        "skirt",
+        "pleated",
+        "flat design",
+        "female",
+        "fashion",
+        "clothing",
+        "multiple pieces",
+        "display",
+        "short top"
+      ]
+    },
+    {
+      "item_id": "shoes-n_whitedans",
+      "item_name": "White Dans",
+      "category": "shoes",
+      "color_linked_categories": [],
+      "color_palettes": [],
+      "created_at": "2016-03-28T17:42:56+00:00",
+      "description_key": null,
+      "gems_sale_price": null,
+      "inspired_by": [],
+      "is_purchasable": true,
+      "is_tradable": false,
+      "image_url": null,
+      "icon_url": null,
+      "link_ids": [],
+      "m_dependent_colors": [],
+      "m_front_skin_part_list": [
+        {
+          "bone": "L_Ankle",
+          "slot": "LeftShoeTop",
+          "image_file": "front-shoes-n_whitedans-LeftShoeTop.vec",
+          "attachment_name": null,
+          "has_remote_render_layer": false
+        },
+        {
+          "bone": "R_Ankle",
+          "slot": "RightShoeTop",
+          "image_file": "front-shoes-n_whitedans-RightShoeTop.vec",
+          "attachment_name": null,
+          "has_remote_render_layer": false
+        }
+      ],
+      "m_back_skin_part_list": [
+        {
+          "bone": "L_Ankle",
+          "slot": "LeftShoeTop",
+          "image_file": "back-shoes-n_whitedans-LeftShoeTop.vec",
+          "attachment_name": null,
+          "has_remote_render_layer": false
+        },
+        {
+          "bone": "R_Ankle",
+          "slot": "RightShoeTop",
+          "image_file": "back-shoes-n_whitedans-RightShoeTop.vec",
+          "attachment_name": null,
+          "has_remote_render_layer": false
+        }
+      ],
+      "m_hidden_skin_parts": [],
+      "pops_sale_price": 0,
+      "rarity": "none_",
+      "release_date": "2016-03-28T17:42:56+00:00",
+      "keywords": [
+        "white",
+        "shoes",
+        "slippers",
+        "stripes",
+        "black",
+        "floor",
+        "pairs",
+        "top",
+        "sitting",
+        "dans"
+      ]
+    },
+    {
+      "item_id": "shoes-n_starteritems2019flatswhite",
+      "item_name": "White Flats",
+      "category": "shoes",
+      "color_linked_categories": [],
+      "color_palettes": [],
+      "created_at": "2019-01-17T02:39:00+00:00",
+      "description_key": null,
+      "gems_sale_price": null,
+      "inspired_by": [],
+      "is_purchasable": true,
+      "is_tradable": false,
+      "image_url": null,
+      "icon_url": null,
+      "link_ids": [],
+      "m_dependent_colors": [],
+      "m_front_skin_part_list": [
+        {
+          "bone": "L_Ankle",
+          "slot": "LeftShoeBottom",
+          "image_file": "front-shoes-n_starteritems2019flatswhite-LeftShoeBottom.vec",
+          "attachment_name": null,
+          "has_remote_render_layer": false
+        },
+        {
+          "bone": "L_Ankle",
+          "slot": "LeftShoeTop",
+          "image_file": "front-shoes-n_starteritems2019flatswhite-LeftShoeTop.vec",
+          "attachment_name": null,
+          "has_remote_render_layer": false
+        },
+        {
+          "bone": "R_Ankle",
+          "slot": "RightShoeBottom",
+          "image_file": "front-shoes-n_starteritems2019flatswhite-RightShoeBottom.vec",
+          "attachment_name": null,
+          "has_remote_render_layer": false
+        },
+        {
+          "bone": "R_Ankle",
+          "slot": "RightShoeTop",
+          "image_file": "front-shoes-n_starteritems2019flatswhite-RightShoeTop.vec",
+          "attachment_name": null,
+          "has_remote_render_layer": false
+        }
+      ],
+      "m_back_skin_part_list": [
+        {
+          "bone": "R_Ankle",
+          "slot": "RightShoeTop",
+          "image_file": "back-shoes-n_starteritems2019flatswhite-RightShoeTop.vec",
+          "attachment_name": null,
+          "has_remote_render_layer": false
+        },
+        {
+          "bone": "L_Ankle",
+          "slot": "LeftShoeTop",
+          "image_file": "back-shoes-n_starteritems2019flatswhite-LeftShoeTop.vec",
+          "attachment_name": null,
+          "has_remote_render_layer": false
+        }
+      ],
+      "m_hidden_skin_parts": [],
+      "pops_sale_price": 0,
+      "rarity": "none_",
+      "release_date": "2019-01-17T02:39:00+00:00",
+      "keywords": [
+        "white",
+        "flats",
+        "shoes",
+        "female",
+        "pair",
+        "brown soles",
+        "top view",
+        "bottom view",
+        "bows",
+        "ballerina"
+      ]
+    },
+    {
+      "item_id": "shoes-n_starteritems2019flatspink",
+      "item_name": "Pink Flats",
+      "category": "shoes",
+      "color_linked_categories": [],
+      "color_palettes": [],
+      "created_at": "2019-01-17T02:38:10+00:00",
+      "description_key": null,
+      "gems_sale_price": null,
+      "inspired_by": [],
+      "is_purchasable": true,
+      "is_tradable": false,
+      "image_url": null,
+      "icon_url": null,
+      "link_ids": [],
+      "m_dependent_colors": [],
+      "m_front_skin_part_list": [
+        {
+          "bone": "L_Ankle",
+          "slot": "LeftShoeTop",
+          "image_file": "front-shoes-n_starteritems2019flatspink-LeftShoeTop.vec",
+          "attachment_name": null,
+          "has_remote_render_layer": false
+        },
+        {
+          "bone": "L_Ankle",
+          "slot": "LeftShoeBottom",
+          "image_file": "front-shoes-n_starteritems2019flatspink-LeftShoeBottom.vec",
+          "attachment_name": null,
+          "has_remote_render_layer": false
+        },
+        {
+          "bone": "R_Ankle",
+          "slot": "RightShoeTop",
+          "image_file": "front-shoes-n_starteritems2019flatspink-RightShoeTop.vec",
+          "attachment_name": null,
+          "has_remote_render_layer": false
+        },
+        {
+          "bone": "R_Ankle",
+          "slot": "RightShoeBottom",
+          "image_file": "front-shoes-n_starteritems2019flatspink-RightShoeBottom.vec",
+          "attachment_name": null,
+          "has_remote_render_layer": false
+        }
+      ],
+      "m_back_skin_part_list": [
+        {
+          "bone": "R_Ankle",
+          "slot": "RightShoeTop",
+          "image_file": "back-shoes-n_starteritems2019flatspink-RightShoeTop.vec",
+          "attachment_name": null,
+          "has_remote_render_layer": false
+        },
+        {
+          "bone": "L_Ankle",
+          "slot": "LeftShoeTop",
+          "image_file": "back-shoes-n_starteritems2019flatspink-LeftShoeTop.vec",
+          "attachment_name": null,
+          "has_remote_render_layer": false
+        }
+      ],
+      "m_hidden_skin_parts": [],
+      "pops_sale_price": 0,
+      "rarity": "none_",
+      "release_date": "2019-01-17T02:38:10+00:00",
+      "keywords": [
+        "pink",
+        "flats",
+        "shoes",
+        "female",
+        "ballerinas",
+        "brown heels",
+        "ballet shoes",
+        "pair",
+        "floor",
+        "placed"
+      ]
+    },
+    {
+      "item_id": "shoes-n_starteritems2019flatsblack",
+      "item_name": "Black Flats",
+      "category": "shoes",
+      "color_linked_categories": [],
+      "color_palettes": [],
+      "created_at": "2019-01-17T02:37:23+00:00",
+      "description_key": null,
+      "gems_sale_price": null,
+      "inspired_by": [],
+      "is_purchasable": true,
+      "is_tradable": false,
+      "image_url": null,
+      "icon_url": null,
+      "link_ids": [],
+      "m_dependent_colors": [],
+      "m_front_skin_part_list": [
+        {
+          "bone": "L_Ankle",
+          "slot": "LeftShoeBottom",
+          "image_file": "front-shoes-n_starteritems2019flatsblack-LeftShoeBottom.vec",
+          "attachment_name": null,
+          "has_remote_render_layer": false
+        },
+        {
+          "bone": "L_Ankle",
+          "slot": "LeftShoeTop",
+          "image_file": "front-shoes-n_starteritems2019flatsblack-LeftShoeTop.vec",
+          "attachment_name": null,
+          "has_remote_render_layer": false
+        },
+        {
+          "bone": "R_Ankle",
+          "slot": "RightShoeTop",
+          "image_file": "front-shoes-n_starteritems2019flatsblack-RightShoeTop.vec",
+          "attachment_name": null,
+          "has_remote_render_layer": false
+        },
+        {
+          "bone": "R_Ankle",
+          "slot": "RightShoeBottom",
+          "image_file": "front-shoes-n_starteritems2019flatsblack-RightShoeBottom.vec",
+          "attachment_name": null,
+          "has_remote_render_layer": false
+        }
+      ],
+      "m_back_skin_part_list": [
+        {
+          "bone": "L_Ankle",
+          "slot": "LeftShoeTop",
+          "image_file": "back-shoes-n_starteritems2019flatsblack-LeftShoeTop.vec",
+          "attachment_name": null,
+          "has_remote_render_layer": false
+        },
+        {
+          "bone": "R_Ankle",
+          "slot": "RightShoeTop",
+          "image_file": "back-shoes-n_starteritems2019flatsblack-RightShoeTop.vec",
+          "attachment_name": null,
+          "has_remote_render_layer": false
+        }
+      ],
+      "m_hidden_skin_parts": [],
+      "pops_sale_price": 0,
+      "rarity": "none_",
+      "release_date": "2019-01-17T02:37:23+00:00",
+      "keywords": [
+        "black",
+        "flats",
+        "shoes",
+        "female",
+        "pairs",
+        "ballet",
+        "laces",
+        "ground",
+        "beige soles",
+        "different sizes"
+      ]
+    },
+    {
+      "item_id": "shoes-n_starteritems2018conversewhite",
+      "item_name": "White Converse",
+      "category": "shoes",
+      "color_linked_categories": [],
+      "color_palettes": [],
+      "created_at": "2019-01-17T02:36:54+00:00",
+      "description_key": null,
+      "gems_sale_price": null,
+      "inspired_by": [],
+      "is_purchasable": true,
+      "is_tradable": false,
+      "image_url": null,
+      "icon_url": null,
+      "link_ids": [],
+      "m_dependent_colors": [],
+      "m_front_skin_part_list": [
+        {
+          "bone": "R_Ankle",
+          "slot": "RightShoeTop",
+          "image_file": "front-shoes-n_starteritems2018conversewhite-RightShoeTop.vec",
+          "attachment_name": null,
+          "has_remote_render_layer": false
+        },
+        {
+          "bone": "L_Ankle",
+          "slot": "LeftShoeTop",
+          "image_file": "front-shoes-n_starteritems2018conversewhite-LeftShoeTop.vec",
+          "attachment_name": null,
+          "has_remote_render_layer": false
+        }
+      ],
+      "m_back_skin_part_list": [
+        {
+          "bone": "L_Ankle",
+          "slot": "LeftShoeTop",
+          "image_file": "back-shoes-n_starteritems2018conversewhite-LeftShoeTop.vec",
+          "attachment_name": null,
+          "has_remote_render_layer": false
+        },
+        {
+          "bone": "R_Ankle",
+          "slot": "RightShoeTop",
+          "image_file": "back-shoes-n_starteritems2018conversewhite-RightShoeTop.vec",
+          "attachment_name": null,
+          "has_remote_render_layer": false
+        }
+      ],
+      "m_hidden_skin_parts": [],
+      "pops_sale_price": 0,
+      "rarity": "none_",
+      "release_date": "2019-01-17T02:36:54+00:00",
+      "keywords": [
+        "white",
+        "converse",
+        "shoes",
+        "sneakers",
+        "footwear",
+        "pair",
+        "dual",
+        "floor",
+        "standing",
+        "dark gray background"
+      ]
+    }
+  ],
+  "total": 584,
+  "first_id": "watch-n_room32019blackwatch",
+  "last_id": "shoes-n_starteritems2018conversewhite"
+}

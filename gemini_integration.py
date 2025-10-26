@@ -1,0 +1,186 @@
+# Module d'intégration de l'API Gemini pour le bot Highrise
+# Permet au bot de générer des réponses intelligentes via l'IA Gemini
+
+import google.generativeai as genai
+import os
+from typing import Optional
+import asyncio
+
+class GeminiAssistant:
+    """Assistant IA utilisant l'API Gemini de Google"""
+    
+    def __init__(self, api_key: Optional[str] = None):
+        """
+        Initialise l'assistant Gemini
+        
+        Args:
+            api_key: Clé API Gemini (optionnel, utilise GEMINI_API_KEY de .env par défaut)
+        """
+        self.api_key = api_key or os.getenv('GEMINI_API_KEY')
+        self.model = None
+        self.is_configured = False
+        
+        if self.api_key:
+            try:
+                genai.configure(api_key=self.api_key)
+                # Essayer différents noms de modèles (avec models/ qui est requis)
+                model_names = [
+                    'models/gemini-2.5-flash',
+                    'models/gemini-flash-latest',
+                    'models/gemini-2.0-flash',
+                    'models/gemini-pro-latest'
+                ]
+                
+                model_loaded = False
+                for model_name in model_names:
+                    try:
+                        self.model = genai.GenerativeModel(model_name)
+                        self.is_configured = True
+                        model_loaded = True
+                        print(f"[GEMINI] OK API Gemini configuree avec succes (modele: {model_name})")
+                        break
+                    except Exception:
+                        continue
+                
+                if not model_loaded:
+                    print("[GEMINI] ERREUR Impossible de charger un modele Gemini")
+                    self.is_configured = False
+                    
+            except Exception as e:
+                print(f"[GEMINI] ERREUR de configuration: {e}")
+                self.is_configured = False
+        else:
+            print("[GEMINI] ATTENTION Cle API non trouvee. Ajoutez GEMINI_API_KEY dans .env")
+    
+    async def ask(self, question: str, context: Optional[str] = None) -> str:
+        """
+        Pose une question à Gemini
+        
+        Args:
+            question: La question à poser
+            context: Contexte additionnel (optionnel)
+            
+        Returns:
+            La réponse de Gemini ou un message d'erreur
+        """
+        if not self.is_configured:
+            return "[ERREUR] L'API Gemini n'est pas configuree. Verifiez votre cle API."
+        
+        try:
+            # Construire le prompt avec contexte si fourni
+            prompt = question
+            if context:
+                prompt = f"Contexte: {context}\n\nQuestion: {question}"
+            
+            # Générer la réponse de manière asynchrone
+            loop = asyncio.get_event_loop()
+            response = await loop.run_in_executor(
+                None, 
+                lambda: self.model.generate_content(prompt)
+            )
+            
+            # Extraire le texte de la réponse
+            if response and response.text:
+                return response.text
+            else:
+                return "[ERREUR] Aucune reponse generee."
+                
+        except Exception as e:
+            print(f"[GEMINI] Erreur lors de la generation: {e}")
+            return f"[ERREUR] {str(e)}"
+    
+    async def chat(self, message: str, username: str = "User") -> str:
+        """
+        Conversation naturelle avec Gemini
+        
+        Args:
+            message: Le message de l'utilisateur
+            username: Nom de l'utilisateur
+            
+        Returns:
+            La réponse de Gemini
+        """
+        context = f"Tu es un assistant IA sympathique dans un jeu social appelé Highrise. Tu discutes avec {username}."
+        return await self.ask(message, context)
+    
+    async def generate_response(self, prompt: str, max_length: int = 200) -> str:
+        """
+        Génère une réponse avec limite de longueur
+        
+        Args:
+            prompt: Le prompt à envoyer
+            max_length: Longueur maximale de la réponse en caractères
+            
+        Returns:
+            La réponse tronquée si nécessaire
+        """
+        response = await self.ask(prompt)
+        
+        # Tronquer si trop long (pour le chat Highrise)
+        if len(response) > max_length:
+            response = response[:max_length-3] + "..."
+        
+        return response
+    
+    async def get_joke(self) -> str:
+        """Génère une blague"""
+        return await self.generate_response(
+            "Raconte une blague courte et drôle (maximum 2 phrases).",
+            max_length=150
+        )
+    
+    async def get_fun_fact(self) -> str:
+        """Génère un fait intéressant"""
+        return await self.generate_response(
+            "Donne-moi un fait intéressant et surprenant (1-2 phrases).",
+            max_length=150
+        )
+    
+    async def get_advice(self, topic: str = "vie") -> str:
+        """Génère un conseil"""
+        return await self.generate_response(
+            f"Donne un conseil positif et motivant sur: {topic} (1-2 phrases).",
+            max_length=150
+        )
+    
+    async def translate(self, text: str, target_lang: str = "en") -> str:
+        """Traduit un texte"""
+        lang_names = {
+            "en": "anglais",
+            "fr": "français",
+            "es": "espagnol",
+            "de": "allemand",
+            "it": "italien"
+        }
+        lang_name = lang_names.get(target_lang, target_lang)
+        
+        return await self.generate_response(
+            f"Traduis ce texte en {lang_name}: {text}",
+            max_length=200
+        )
+    
+    async def summarize(self, text: str) -> str:
+        """Résume un texte"""
+        return await self.generate_response(
+            f"Résume ce texte en une phrase courte: {text}",
+            max_length=150
+        )
+
+# Instance globale de l'assistant (sera initialisée après le chargement de .env)
+gemini_assistant = None
+
+def initialize_gemini():
+    """Initialise l'assistant Gemini après le chargement de .env"""
+    global gemini_assistant
+    if gemini_assistant is None:
+        gemini_assistant = GeminiAssistant()
+    return gemini_assistant
+
+# Fonctions helper pour utilisation facile
+async def ask_gemini(question: str, context: Optional[str] = None) -> str:
+    """Fonction helper pour poser une question à Gemini"""
+    return await gemini_assistant.ask(question, context)
+
+async def chat_with_gemini(message: str, username: str = "User") -> str:
+    """Fonction helper pour discuter avec Gemini"""
+    return await gemini_assistant.chat(message, username)
