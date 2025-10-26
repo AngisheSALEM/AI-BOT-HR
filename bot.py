@@ -126,19 +126,18 @@ class HighriseBot(BaseBot):
             
             default_outfit = [
                 Item(type="clothing", amount=1, id="body-flesh", account_bound=False, active_palette=4),
-                Item(type="clothing", amount=1, id="eye-m_19b", account_bound=False, active_palette=7),
-                Item(type="clothing", amount=1, id="eyebrow-n_07", account_bound=False, active_palette=1),
                 Item(type="clothing", amount=1, id="nose-n_01", account_bound=False, active_palette=0),
-                Item(type="clothing", amount=1, id="mouth-n_aprilfoolsinvisible2020mouth", account_bound=False, active_palette=-1),
+                Item(type="clothing", amount=1, id="eyebrow-n_07", account_bound=False, active_palette=1),
+                Item(type="clothing", amount=1, id="shirt-n_augf2p2024brownschoolvest", account_bound=False, active_palette=0),
                 Item(type="clothing", amount=1, id="glasses-n_starteritems2019roundframesblack", account_bound=False, active_palette=0),
+                Item(type="clothing", amount=1, id="sock-n_basic2021opaquetightsblack", account_bound=False, active_palette=0),
                 Item(type="clothing", amount=1, id="hair_front-n_BHM2019styledtightcurlhair", account_bound=False, active_palette=1),
                 Item(type="clothing", amount=1, id="hair_back-n_blackhistorymonth2025jbrionnebigcurls", account_bound=False, active_palette=1),
-                Item(type="clothing", amount=1, id="shirt-n_augf2p2024brownschoolvest", account_bound=False, active_palette=0),
-                Item(type="clothing", amount=1, id="pants-n_janf2pcollection2024pantsblack", account_bound=False, active_palette=0),
-                Item(type="clothing", amount=1, id="shoes-n_seasonpass2025set1classicloafers", account_bound=False, active_palette=0),
-                Item(type="clothing", amount=1, id="sock-n_basic2021opaquetightsblack", account_bound=False, active_palette=0),
+                Item(type="clothing", amount=1, id="eye-m_19b", account_bound=False, active_palette=7),
+                Item(type="clothing", amount=1, id="mouth-n_aprilfoolsinvisible2020mouth", account_bound=False, active_palette=-1),
                 Item(type="clothing", amount=1, id="hat-n_hmbeanieblack_1", account_bound=False, active_palette=0),
-                Item(type="clothing", amount=1, id="handbag-n_giftrise2023candycanehandright", account_bound=False, active_palette=0),
+                Item(type="clothing", amount=1, id="pants-n_dailyquest2025kireylovebrownp", account_bound=False, active_palette=0),
+                Item(type="clothing", amount=1, id="shoes-n_room12019bootsblack", account_bound=False, active_palette=0),
                 Item(type="clothing", amount=1, id="handbag-n_dailyquest2025kireylovewatch", account_bound=False, active_palette=0),
             ]
             
