@@ -85,8 +85,8 @@ class HighriseBot(BaseBot):
         self.last_love_declaration = 0
         self.love_task = None
         
-        # Nouvelles/Faits toutes les 7 minutes
-        self.news_interval = 420  # 7 minutes (420 secondes)
+        # Faits intéressants toutes les 2 minutes
+        self.news_interval = 120  # 2 minutes (120 secondes)
         self.news_task = None
         
         # Profil détaillé de Sindouche (ce que Savant sait d'elle)
@@ -188,9 +188,9 @@ class HighriseBot(BaseBot):
         self.floss_task = asyncio.create_task(self.floss_loop())
         print("[FLOSS] Emote floss en boucle demarree")
         
-        # Démarrer les nouvelles/faits toutes les 30 minutes
+        # Démarrer les faits intéressants toutes les 2 minutes
         self.news_task = asyncio.create_task(self.start_news_broadcast())
-        print("[NEWS] Tache de diffusion de nouvelles/faits demarree")
+        print(f"[NEWS] Diffusion de faits interessants activee (toutes les {self.news_interval}s = 2 min)")
     
     async def on_chat(self, user: User, message: str) -> None:
         print(f"[CHAT] {user.username}: {message}")
@@ -450,21 +450,26 @@ LIMITE: Maximum 130 caracteres. Emojis: 🌹💕✨"""
                 # Tech
                 ("Technologie", "innovations technologiques, nouvelles technologies, gadgets"),
                 ("Informatique", "programmation, developpement, intelligence artificielle"),
+                ("IA", "intelligence artificielle, machine learning, robots"),
                 
-                # Amour
-                ("Amour", "relations amoureuses, psychologie de l'amour, faits sur l'amour"),
+                # Sciences - Physique Quantique (plus de poids)
+                ("Physique Quantique", "physique quantique, mecanique quantique, phenomenes quantiques, superposition, intrication"),
+                ("Physique Quantique", "physique quantique, effet tunnel, dualite onde-particule, principe d'incertitude"),
+                ("Physique Quantique", "physique quantique, chat de Schrodinger, decoherence quantique, ordinateurs quantiques"),
+                ("Espace", "espace, astronomie, univers, trous noirs, galaxies, etoiles"),
+                ("Physique", "physique, lois physiques, relativite, energie, matiere"),
                 
-                # Sciences
+                # Autres Sciences
                 ("Astrologie", "astrologie, signes astrologiques, horoscope"),
-                ("Physique", "physique, lois physiques, decouvertes physiques"),
-                ("Physique Quantique", "physique quantique, mecanique quantique, phenomenes quantiques"),
-                ("Mathématiques", "mathematiques, theoremes, nombres"),
+                ("Mathématiques", "mathematiques, theoremes, nombres, geometrie"),
                 ("Chimie", "chimie, elements chimiques, reactions chimiques"),
-                ("Biologie", "biologie, corps humain, nature"),
+                ("Biologie", "biologie, corps humain, nature, evolution"),
+                ("Neurosciences", "cerveau, neurones, memoire, conscience"),
                 
                 # Culture
                 ("Histoire", "histoire, evenements historiques, personnages historiques"),
-                ("Géographie", "geographie, pays, continents, phenomenes naturels")
+                ("Géographie", "geographie, pays, continents, phenomenes naturels"),
+                ("Psychologie", "psychologie, comportement humain, emotions")
             ]
             
             # Choisir un domaine aléatoire
@@ -545,7 +550,7 @@ Sois captivant et educatif!"""
                 await asyncio.sleep(wait_time)
         
         try:
-            # Détecter si on parle de Sindouche ou du créateur
+            # Détecter si on parle de Sindouche, du créateur ou d'amour
             message_lower = message.lower()
             parle_de_sindouche = any(word in message_lower for word in [
                 "sindouche", "qui est sindouche", "parle de sindouche", 
@@ -560,6 +565,18 @@ Sois captivant et educatif!"""
                 "developpé par", "cree par", "créé par", "ton dev", "ton developpeur"
             ])
             
+            # Détecter les questions sur l'amour
+            question_amour = any(word in message_lower for word in [
+                "amour", "amoureuse", "amoureux", "relation", "couple",
+                "crush", "draguer", "seduction", "seduire", "plaire",
+                "ex", "rupture", "reconquerir", "jalousie", "jaloux",
+                "coeur brise", "chagrin d'amour", "declaration", "declarer",
+                "premier rendez-vous", "rendez vous", "baiser", "embrasser",
+                "sentiment", "sentiments", "tomber amoureux", "aimer",
+                "comment savoir si", "elle m'aime", "il m'aime", "attire",
+                "flirter", "drague", "timide", "confiance", "rejete"
+            ])
+            
             # Contexte pour l'IA
             if parle_du_createur:
                 # Contexte spécial quand on demande le créateur
@@ -569,6 +586,21 @@ REPONDS CLAIREMENT: Tu as ete cree par @sylver_ralx_lm
 LIMITE: Maximum {"230" if is_whisper else "110"} caracteres.
 Exemple: "J'ai ete cree par @sylver_ralx_lm ! 🤖✨"
 Sois fier de ton createur!"""
+            elif question_amour:
+                # Contexte spécial pour les questions d'amour
+                context = f"""Tu es Savant, un expert en relations amoureuses et psychologie de l'amour.
+Tu donnes des conseils sinceres, empathiques et pratiques sur l'amour.
+Tu comprends les emotions, la seduction, les relations, les ruptures.
+Reponds a la question: "{message}"
+Sois:
+- Empathique et comprehensif
+- Donne des conseils concrets et applicables
+- Utilise ton experience et ta sagesse
+- Sois positif mais realiste
+- Utilise des emojis appropries: 💕❤️💔✨🌹
+LIMITE: Maximum {"230" if is_whisper else "110"} caracteres.
+Exemple: "L'amour veritable se construit sur la confiance et la communication. Sois toi-meme! 💕"
+Sois un bon conseiller en amour!"""
             elif parle_de_sindouche:
                 # Créer le profil détaillé pour le contexte
                 profil = f"""PROFIL DE SINDOUCHE (ce que tu sais d'elle):
