@@ -85,8 +85,8 @@ class HighriseBot(BaseBot):
         self.last_love_declaration = 0
         self.love_task = None
         
-        # Faits intéressants toutes les 2 minutes
-        self.news_interval = 120  # 2 minutes (120 secondes)
+        # Faits intéressants toutes les 5 minutes
+        self.news_interval = 300  # 5 minutes (300 secondes)
         self.news_task = None
         
         # Profil détaillé de Sindouche (ce que Savant sait d'elle)
@@ -188,9 +188,9 @@ class HighriseBot(BaseBot):
         self.floss_task = asyncio.create_task(self.floss_loop())
         print("[FLOSS] Emote floss en boucle demarree")
         
-        # Démarrer les faits intéressants toutes les 2 minutes
+        # Démarrer les faits intéressants toutes les 5 minutes
         self.news_task = asyncio.create_task(self.start_news_broadcast())
-        print(f"[NEWS] Diffusion de faits interessants activee (toutes les {self.news_interval}s = 2 min)")
+        print(f"[NEWS] Diffusion de faits interessants activee (toutes les {self.news_interval}s = 5 min)")
     
     async def on_chat(self, user: User, message: str) -> None:
         print(f"[CHAT] {user.username}: {message}")
