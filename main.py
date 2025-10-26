@@ -6,7 +6,17 @@ Lance le bot Highrise avec les credentials depuis les Secrets
 
 import os
 import sys
+import socket
 from bot import start_health_server
+
+def get_replit_url():
+    """Génère l'URL publique du Repl"""
+    repl_slug = os.getenv('REPL_SLUG', 'ai-bot-hr')
+    repl_owner = os.getenv('REPL_OWNER', 'salembalagizi9')
+    
+    # Replit génère automatiquement l'URL
+    url = f"https://{repl_slug}.{repl_owner}.repl.co"
+    return url
 
 def main():
     print("=" * 60)
@@ -15,6 +25,12 @@ def main():
     
     # Démarrer le serveur de santé (pour garder le bot actif)
     start_health_server()
+    
+    # Afficher l'URL publique
+    public_url = get_replit_url()
+    print(f"🌐 URL publique: {public_url}")
+    print(f"📋 Copiez cette URL dans UptimeRobot!")
+    print("=" * 60)
     
     # Récupérer les credentials depuis les Secrets Replit
     room_id = os.getenv('ROOM_ID')
@@ -28,15 +44,23 @@ def main():
         sys.exit(1)
     
     print(f"✅ Room ID: {room_id}")
-    print(f"✅ Token: {bot_token[:20]}...")
+    print(f"✅ Token: {bot_token[:20]}... (longueur: {len(bot_token)} caractères)")
     print("=" * 60)
     print("🚀 Connexion au serveur Highrise...")
     print("=" * 60)
     
-    # Lancer le bot
+    # Lancer le bot avec la méthode correcte
     from highrise.__main__ import main as highrise_main
+    
+    # Configurer les arguments pour highrise
     sys.argv = ['highrise', 'bot:HighriseBot', room_id, bot_token]
-    highrise_main()
+    
+    # Lancer le bot
+    try:
+        highrise_main()
+    except Exception as e:
+        print(f"❌ Erreur: {e}")
+        sys.exit(1)
 
 if __name__ == "__main__":
     main()
