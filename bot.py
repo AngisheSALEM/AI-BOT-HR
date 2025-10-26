@@ -126,18 +126,17 @@ class HighriseBot(BaseBot):
             
             default_outfit = [
                 Item(type="clothing", amount=1, id="body-flesh", account_bound=False, active_palette=4),
-                Item(type="clothing", amount=1, id="eye-m_12b", account_bound=False, active_palette=2),
-                Item(type="clothing", amount=1, id="eyebrow-n_04", account_bound=False, active_palette=1),
+                Item(type="clothing", amount=1, id="eye-m_19b", account_bound=False, active_palette=7),
+                Item(type="clothing", amount=1, id="eyebrow-n_07", account_bound=False, active_palette=1),
                 Item(type="clothing", amount=1, id="nose-n_01", account_bound=False, active_palette=0),
-                Item(type="clothing", amount=1, id="mouth-basic2018chubbymouth", account_bound=False, active_palette=-1),
-                Item(type="clothing", amount=1, id="glasses-n_10", account_bound=False, active_palette=0),
+                Item(type="clothing", amount=1, id="mouth-n_aprilfoolsinvisible2020mouth", account_bound=False, active_palette=-1),
+                Item(type="clothing", amount=1, id="glasses-n_starteritems2019roundframesblack", account_bound=False, active_palette=0),
+                Item(type="clothing", amount=1, id="hair_front-f_16", account_bound=False, active_palette=63),
+                Item(type="clothing", amount=1, id="hair_back-f_16", account_bound=False, active_palette=63),
                 Item(type="clothing", amount=1, id="shirt-n_flashysuit", account_bound=False, active_palette=-1),
-                Item(type="clothing", amount=1, id="pants-n_blackjoggerpants", account_bound=False, active_palette=0),
-                Item(type="clothing", amount=1, id="shoes-f_tallridingbootsblack", account_bound=False, active_palette=-1),
-                Item(type="clothing", amount=1, id="hat-n_2016fallcrownsnapback", account_bound=False, active_palette=-1),
-                Item(type="clothing", amount=1, id="hair_front-n_malenew24", account_bound=False, active_palette=2),
-                Item(type="clothing", amount=1, id="hair_back-n_malenew24", account_bound=False, active_palette=2),
-                Item(type="clothing", amount=1, id="watch-n_room12019watch", account_bound=False, active_palette=0),
+                Item(type="clothing", amount=1, id="pants-n_dailyquest2025kireylovebrownp", account_bound=False, active_palette=0),
+                Item(type="clothing", amount=1, id="shoes-n_westerncountrymusic2021darkcowboypatternedboots", account_bound=False, active_palette=0),
+                Item(type="clothing", amount=1, id="watch-n_room32019blackwatch", account_bound=False, active_palette=0),
             ]
             
             await self.highrise.set_outfit(default_outfit)
