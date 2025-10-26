@@ -131,12 +131,15 @@ class HighriseBot(BaseBot):
                 Item(type="clothing", amount=1, id="nose-n_01", account_bound=False, active_palette=0),
                 Item(type="clothing", amount=1, id="mouth-n_aprilfoolsinvisible2020mouth", account_bound=False, active_palette=-1),
                 Item(type="clothing", amount=1, id="glasses-n_starteritems2019roundframesblack", account_bound=False, active_palette=0),
-                Item(type="clothing", amount=1, id="hair_front-f_16", account_bound=False, active_palette=63),
-                Item(type="clothing", amount=1, id="hair_back-f_16", account_bound=False, active_palette=63),
-                Item(type="clothing", amount=1, id="shirt-n_flashysuit", account_bound=False, active_palette=-1),
-                Item(type="clothing", amount=1, id="pants-n_dailyquest2025kireylovebrownp", account_bound=False, active_palette=0),
-                Item(type="clothing", amount=1, id="shoes-n_westerncountrymusic2021darkcowboypatternedboots", account_bound=False, active_palette=0),
-                Item(type="clothing", amount=1, id="watch-n_room32019blackwatch", account_bound=False, active_palette=0),
+                Item(type="clothing", amount=1, id="hair_front-n_BHM2019styledtightcurlhair", account_bound=False, active_palette=1),
+                Item(type="clothing", amount=1, id="hair_back-n_blackhistorymonth2025jbrionnebigcurls", account_bound=False, active_palette=1),
+                Item(type="clothing", amount=1, id="shirt-n_augf2p2024brownschoolvest", account_bound=False, active_palette=0),
+                Item(type="clothing", amount=1, id="pants-n_janf2pcollection2024pantsblack", account_bound=False, active_palette=0),
+                Item(type="clothing", amount=1, id="shoes-n_seasonpass2025set1classicloafers", account_bound=False, active_palette=0),
+                Item(type="clothing", amount=1, id="sock-n_basic2021opaquetightsblack", account_bound=False, active_palette=0),
+                Item(type="clothing", amount=1, id="hat-n_hmbeanieblack_1", account_bound=False, active_palette=0),
+                Item(type="clothing", amount=1, id="handbag-n_giftrise2023candycanehandright", account_bound=False, active_palette=0),
+                Item(type="clothing", amount=1, id="handbag-n_dailyquest2025kireylovewatch", account_bound=False, active_palette=0),
             ]
             
             await self.highrise.set_outfit(default_outfit)
