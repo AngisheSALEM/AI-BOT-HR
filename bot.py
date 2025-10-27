@@ -1417,7 +1417,23 @@ Sois precis en peu de mots, reste sous 110 caracteres."""
             
             print(f"[COPYOUTFIT] Copie de l'outfit de {target_user.username} ({len(outfit_items)} items)")
             
-            # Appliquer l'outfit sur le bot
+            # IMPORTANT: D'abord récupérer l'outfit actuel du bot pour le supprimer
+            bot_outfit_response = await self.highrise.get_my_outfit()
+            current_outfit = list(bot_outfit_response.outfit)
+            
+            print(f"[COPYOUTFIT] Suppression de l'ancien outfit ({len(current_outfit)} items)...")
+            
+            # Supprimer tous les items actuels du bot
+            for item in current_outfit:
+                try:
+                    await self.highrise.set_outfit([item], False)  # False = remove
+                except Exception as e:
+                    print(f"[COPYOUTFIT] Erreur suppression {item.id}: {e}")
+            
+            # Attendre un peu pour que les suppressions soient appliquées
+            await asyncio.sleep(0.5)
+            
+            # Appliquer le nouvel outfit sur le bot
             await self.highrise.set_outfit(outfit_items)
             
             print(f"[COPYOUTFIT] ✅ Outfit copié avec succès!")
