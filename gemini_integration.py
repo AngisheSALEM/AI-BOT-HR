@@ -7,54 +7,93 @@ from typing import Optional
 import asyncio
 
 class GeminiAssistant:
-    """Assistant IA utilisant l'API Gemini de Google"""
+    """Assistant IA utilisant l'API Gemini de Google avec rotation automatique des clés"""
     
-    def __init__(self, api_key: Optional[str] = None):
+    def __init__(self, api_keys: Optional[list] = None):
         """
-        Initialise l'assistant Gemini
+        Initialise l'assistant Gemini avec rotation de clés
         
         Args:
-            api_key: Clé API Gemini (optionnel, utilise GEMINI_API_KEY de .env par défaut)
+            api_keys: Liste de clés API Gemini (optionnel, utilise GEMINI_API_KEY* de .env par défaut)
         """
-        self.api_key = api_key or os.getenv('GEMINI_API_KEY')
+        # Charger les clés API depuis l'environnement ou utiliser celles fournies
+        if api_keys:
+            self.api_keys = api_keys
+        else:
+            # Chercher GEMINI_API_KEY, GEMINI_API_KEY_2, GEMINI_API_KEY_3, GEMINI_API_KEY_4
+            self.api_keys = []
+            for i in range(1, 5):
+                key_name = f'GEMINI_API_KEY_{i}' if i > 1 else 'GEMINI_API_KEY'
+                key = os.getenv(key_name)
+                if key:
+                    self.api_keys.append(key)
+        
+        self.current_key_index = 0
+        self.request_count = 0
+        self.max_requests_per_key = 100
         self.model = None
         self.is_configured = False
         
-        if self.api_key:
-            try:
-                genai.configure(api_key=self.api_key)
-                # Essayer différents noms de modèles (avec models/ qui est requis)
-                model_names = [
-                    'models/gemini-2.5-flash',
-                    'models/gemini-flash-latest',
-                    'models/gemini-2.0-flash',
-                    'models/gemini-pro-latest'
-                ]
-                
-                model_loaded = False
-                for model_name in model_names:
-                    try:
-                        self.model = genai.GenerativeModel(model_name)
-                        self.is_configured = True
-                        model_loaded = True
-                        print(f"[GEMINI] OK API Gemini configuree avec succes (modele: {model_name})")
-                        break
-                    except Exception:
-                        continue
-                
-                if not model_loaded:
-                    print("[GEMINI] ERREUR Impossible de charger un modele Gemini")
-                    self.is_configured = False
-                    
-            except Exception as e:
-                print(f"[GEMINI] ERREUR de configuration: {e}")
-                self.is_configured = False
+        if self.api_keys:
+            self._configure_current_key()
         else:
-            print("[GEMINI] ATTENTION Cle API non trouvee. Ajoutez GEMINI_API_KEY dans .env")
+            print("[GEMINI] ATTENTION Aucune cle API trouvee. Ajoutez GEMINI_API_KEY dans .env")
+    
+    def _configure_current_key(self):
+        """Configure Gemini avec la clé API actuelle"""
+        if not self.api_keys:
+            return
+        
+        try:
+            current_key = self.api_keys[self.current_key_index]
+            genai.configure(api_key=current_key)
+            # Essayer différents noms de modèles (avec models/ qui est requis)
+            model_names = [
+                'models/gemini-2.5-flash',
+                'models/gemini-flash-latest',
+                'models/gemini-2.0-flash',
+                'models/gemini-pro-latest'
+            ]
+            
+            model_loaded = False
+            for model_name in model_names:
+                try:
+                    self.model = genai.GenerativeModel(model_name)
+                    self.is_configured = True
+                    model_loaded = True
+                    print(f"[GEMINI] OK API Gemini configuree avec succes (modele: {model_name})")
+                    break
+                except Exception:
+                    continue
+            
+            if not model_loaded:
+                print("[GEMINI] ERREUR Impossible de charger un modele Gemini")
+                self.is_configured = False
+            else:
+                print(f"[GEMINI] Cle API {self.current_key_index + 1}/{len(self.api_keys)} active")
+                    
+        except Exception as e:
+            print(f"[GEMINI] ERREUR de configuration: {e}")
+            self.is_configured = False
+    
+    def _rotate_key(self):
+        """Passe à la clé API suivante"""
+        if len(self.api_keys) <= 1:
+            # Une seule clé, on reset juste le compteur
+            self.request_count = 0
+            print(f"[GEMINI] Compteur reset: {self.request_count}/{self.max_requests_per_key}")
+            return
+        
+        # Passer à la clé suivante
+        self.current_key_index = (self.current_key_index + 1) % len(self.api_keys)
+        self.request_count = 0
+        
+        print(f"[GEMINI] Rotation vers cle API {self.current_key_index + 1}/{len(self.api_keys)}")
+        self._configure_current_key()
     
     async def ask(self, question: str, context: Optional[str] = None) -> str:
         """
-        Pose une question à Gemini
+        Pose une question à Gemini avec rotation automatique des clés
         
         Args:
             question: La question à poser
@@ -65,6 +104,11 @@ class GeminiAssistant:
         """
         if not self.is_configured:
             return "[ERREUR] L'API Gemini n'est pas configuree. Verifiez votre cle API."
+        
+        # Incrémenter le compteur et vérifier si rotation nécessaire
+        self.request_count += 1
+        if self.request_count >= self.max_requests_per_key:
+            self._rotate_key()
         
         try:
             # Construire le prompt avec contexte si fourni

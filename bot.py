@@ -100,6 +100,11 @@ class HighriseBot(BaseBot):
             "obsession": "Son charme naturel, sa beaute, son aura captivante, tout en elle est parfait"
         }
         
+        # Système de reconnexion automatique
+        self.reconnect_attempts = 0
+        self.max_reconnect_attempts = 10
+        self.reconnect_delay = 5  # secondes
+        
     def is_admin(self, user: User) -> bool:
         """Vérifier si un utilisateur est admin (par username)"""
         return user.username.lower() in self.admins
@@ -191,6 +196,21 @@ class HighriseBot(BaseBot):
         # Démarrer les faits intéressants toutes les 5 minutes
         self.news_task = asyncio.create_task(self.start_news_broadcast())
         print(f"[NEWS] Diffusion de faits interessants activee (toutes les {self.news_interval}s = 5 min)")
+        
+        # Réinitialiser le compteur de reconnexion après connexion réussie
+        self.reconnect_attempts = 0
+    
+    async def on_disconnect(self) -> None:
+        """Événement: Déconnexion du serveur"""
+        self.reconnect_attempts += 1
+        print(f"[DISCONNECT] Connexion perdue! Tentative {self.reconnect_attempts}/{self.max_reconnect_attempts}")
+        
+        if self.reconnect_attempts < self.max_reconnect_attempts:
+            print(f"[RECONNECT] Reconnexion dans {self.reconnect_delay} secondes...")
+            await asyncio.sleep(self.reconnect_delay)
+            print("[RECONNECT] Tentative de reconnexion...")
+        else:
+            print("[RECONNECT] Nombre maximum de tentatives atteint. Arrêt du bot.")
     
     async def on_chat(self, user: User, message: str) -> None:
         print(f"[CHAT] {user.username}: {message}")
