@@ -138,7 +138,7 @@ class HighriseBot(BaseBot):
                 Item(type="clothing", amount=1, id="sock-n_basic2021opaquetightsblack", account_bound=False, active_palette=0),
                 Item(type="clothing", amount=1, id="hair_front-n_BHM2019styledtightcurlhair", account_bound=False, active_palette=1),
                 Item(type="clothing", amount=1, id="hair_back-n_blackhistorymonth2025jbrionnebigcurls", account_bound=False, active_palette=1),
-                Item(type="clothing", amount=1, id="eye-m_19b", account_bound=False, active_palette=7),
+                Item(type="clothing", amount=1, id="eye-n_2016gingerbreadeyes", account_bound=False, active_palette=7),
                 Item(type="clothing", amount=1, id="mouth-n_aprilfoolsinvisible2020mouth", account_bound=False, active_palette=-1),
                 Item(type="clothing", amount=1, id="hat-n_hmbeanieblack_1", account_bound=False, active_palette=0),
                 Item(type="clothing", amount=1, id="pants-n_dailyquest2025kireylovebrownp", account_bound=False, active_palette=0),
