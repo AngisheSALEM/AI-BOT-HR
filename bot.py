@@ -769,6 +769,8 @@ Sois precis en peu de mots, reste sous 110 caracteres."""
                     await self.cmd_modify_outfit(user, subparams)
                 elif subcmd == 'changecolor':
                     await self.cmd_change_color(user, subparams)
+                elif subcmd == 'copyoutfit':
+                    await self.cmd_copy_outfit(user, subparams)
                 elif subcmd == 'setpos':
                     await self.cmd_setpos(user, subparams)
                 elif subcmd == 'rest':
@@ -1383,6 +1385,61 @@ Sois precis en peu de mots, reste sous 110 caracteres."""
             
         except Exception as e:
             print(f"[ERREUR] Analyze outfit: {e}")
+            import traceback
+            traceback.print_exc()
+            await self.highrise.send_whisper(user.id, f"Erreur: {e}")
+    
+    async def cmd_copy_outfit(self, user: User, params):
+        """Copier directement l'outfit complet d'un utilisateur sur le bot"""
+        if not params:
+            await self.highrise.send_whisper(user.id, "Usage: !admin copyoutfit <username>")
+            return
+        
+        target_username = params[0].lower()
+        
+        try:
+            # Trouver l'utilisateur dans la room
+            room_users = await self.highrise.get_room_users()
+            target_user = None
+            
+            for room_user, _ in room_users.content:
+                if room_user.username.lower() == target_username:
+                    target_user = room_user
+                    break
+            
+            if not target_user:
+                await self.highrise.send_whisper(user.id, f"❌ Utilisateur '{params[0]}' non trouvé dans la room")
+                return
+            
+            # Récupérer l'outfit de l'utilisateur
+            outfit_response = await self.highrise.get_user_outfit(target_user.id)
+            outfit_items = list(outfit_response.outfit)
+            
+            print(f"[COPYOUTFIT] Copie de l'outfit de {target_user.username} ({len(outfit_items)} items)")
+            
+            # Appliquer l'outfit sur le bot
+            await self.highrise.set_outfit(outfit_items)
+            
+            print(f"[COPYOUTFIT] ✅ Outfit copié avec succès!")
+            
+            # Afficher les détails dans les logs
+            print("\n" + "="*60)
+            print(f"👔 OUTFIT COPIÉ DE: {target_user.username}")
+            print("="*60)
+            for item in outfit_items:
+                print(f"  • {item.id} (palette: {item.active_palette})")
+            print("="*60 + "\n")
+            
+            await self.highrise.send_whisper(user.id, 
+                f"✅ Outfit de {target_user.username} copié!\n"
+                f"📦 {len(outfit_items)} items équipés\n"
+                f"👀 Regarde les logs pour les détails")
+            
+            # Message dans le chat
+            await self.highrise.chat(f"✨ J'ai copié l'outfit de {target_user.username}!")
+            
+        except Exception as e:
+            print(f"[ERREUR] Copy outfit: {e}")
             import traceback
             traceback.print_exc()
             await self.highrise.send_whisper(user.id, f"Erreur: {e}")
