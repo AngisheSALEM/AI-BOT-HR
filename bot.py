@@ -104,6 +104,9 @@ class HighriseBot(BaseBot):
         self.reconnect_attempts = 0
         self.max_reconnect_attempts = 10
         self.reconnect_delay = 5  # secondes
+        self.last_heartbeat = time.time()
+        self.heartbeat_task = None
+        self.is_connected = False
         
     def is_admin(self, user: User) -> bool:
         """Vérifier si un utilisateur est admin (par username)"""
@@ -197,20 +200,29 @@ class HighriseBot(BaseBot):
         self.news_task = asyncio.create_task(self.start_news_broadcast())
         print(f"[NEWS] Diffusion de faits interessants activee (toutes les {self.news_interval}s = 5 min)")
         
+        # Démarrer le monitoring de connexion
+        self.is_connected = True
+        self.heartbeat_task = asyncio.create_task(self.connection_monitor())
+        print("[MONITOR] Monitoring de connexion activé")
+        
         # Réinitialiser le compteur de reconnexion après connexion réussie
         self.reconnect_attempts = 0
     
     async def on_disconnect(self) -> None:
         """Événement: Déconnexion du serveur"""
+        self.is_connected = False
         self.reconnect_attempts += 1
-        print(f"[DISCONNECT] Connexion perdue! Tentative {self.reconnect_attempts}/{self.max_reconnect_attempts}")
+        print(f"[DISCONNECT] ⚠️ Connexion perdue! Tentative {self.reconnect_attempts}/{self.max_reconnect_attempts}")
         
         if self.reconnect_attempts < self.max_reconnect_attempts:
-            print(f"[RECONNECT] Reconnexion dans {self.reconnect_delay} secondes...")
+            print(f"[RECONNECT] ⏳ Reconnexion dans {self.reconnect_delay} secondes...")
             await asyncio.sleep(self.reconnect_delay)
-            print("[RECONNECT] Tentative de reconnexion...")
+            print("[RECONNECT] 🔄 Le SDK Highrise gère la reconnexion automatiquement...")
+            # Note: Le SDK Highrise se reconnecte automatiquement
+            # On attend juste que la connexion soit rétablie
         else:
-            print("[RECONNECT] Nombre maximum de tentatives atteint. Arrêt du bot.")
+            print("[RECONNECT] ❌ Nombre maximum de tentatives atteint.")
+            print("[RECONNECT] ℹ️ Le bot continuera de fonctionner si le SDK se reconnecte.")
     
     async def on_chat(self, user: User, message: str) -> None:
         print(f"[CHAT] {user.username}: {message}")
@@ -524,6 +536,33 @@ Sois captivant et educatif!"""
             
         except Exception as e:
             print(f"[NEWS] Erreur generation: {e}")
+    
+    async def connection_monitor(self):
+        """Monitorer la connexion et détecter les déconnexions"""
+        print("[MONITOR] Démarrage du monitoring de connexion...")
+        
+        while True:
+            try:
+                await asyncio.sleep(30)  # Vérifier toutes les 30 secondes
+                
+                if not self.is_connected:
+                    continue
+                
+                # Tester la connexion en récupérant les utilisateurs
+                try:
+                    await self.highrise.get_room_users()
+                    self.last_heartbeat = time.time()
+                    # print("[MONITOR] ✅ Connexion OK")
+                except Exception as e:
+                    print(f"[MONITOR] ❌ Erreur de connexion détectée: {e}")
+                    self.is_connected = False
+                    
+                    # Déclencher manuellement la reconnexion
+                    await self.on_disconnect()
+                    
+            except Exception as e:
+                print(f"[MONITOR] Erreur monitoring: {e}")
+                await asyncio.sleep(60)
     
     async def floss_loop(self):
         """Exécuter l'emote floss en boucle indéfiniment"""
