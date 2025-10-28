@@ -58,7 +58,18 @@ class GeminiAssistant:
             model_loaded = False
             for model_name in model_names:
                 try:
-                    self.model = genai.GenerativeModel(model_name)
+                    # Configurer le modèle avec timeout augmenté
+                    generation_config = {
+                        'temperature': 0.7,
+                        'top_p': 0.95,
+                        'top_k': 40,
+                        'max_output_tokens': 256,
+                    }
+                    
+                    self.model = genai.GenerativeModel(
+                        model_name,
+                        generation_config=generation_config
+                    )
                     self.is_configured = True
                     model_loaded = True
                     print(f"[GEMINI] OK API Gemini configuree avec succes (modele: {model_name})")
@@ -110,28 +121,54 @@ class GeminiAssistant:
         if self.request_count >= self.max_requests_per_key:
             self._rotate_key()
         
-        try:
-            # Construire le prompt avec contexte si fourni
-            prompt = question
-            if context:
-                prompt = f"Contexte: {context}\n\nQuestion: {question}"
-            
-            # Générer la réponse de manière asynchrone
-            loop = asyncio.get_event_loop()
-            response = await loop.run_in_executor(
-                None, 
-                lambda: self.model.generate_content(prompt)
-            )
-            
-            # Extraire le texte de la réponse
-            if response and response.text:
-                return response.text
-            else:
-                return "[ERREUR] Aucune reponse generee."
+        # Retry jusqu'à 2 fois en cas d'erreur 504
+        max_retries = 2
+        for attempt in range(max_retries):
+            try:
+                # Construire le prompt avec contexte si fourni
+                prompt = question
+                if context:
+                    prompt = f"Contexte: {context}\n\nQuestion: {question}"
                 
-        except Exception as e:
-            print(f"[GEMINI] Erreur lors de la generation: {e}")
-            return f"[ERREUR] {str(e)}"
+                # Générer la réponse de manière asynchrone avec timeout
+                loop = asyncio.get_event_loop()
+                
+                # Utiliser wait_for pour ajouter un timeout de 15 secondes
+                response = await asyncio.wait_for(
+                    loop.run_in_executor(
+                        None, 
+                        lambda: self.model.generate_content(prompt)
+                    ),
+                    timeout=15.0  # 15 secondes max
+                )
+                
+                # Extraire le texte de la réponse
+                if response and response.text:
+                    return response.text
+                else:
+                    return "[ERREUR] Aucune reponse generee."
+                    
+            except asyncio.TimeoutError:
+                print(f"[GEMINI] Timeout (tentative {attempt + 1}/{max_retries})")
+                if attempt < max_retries - 1:
+                    await asyncio.sleep(1)  # Attendre 1s avant de réessayer
+                    continue
+                return "[ERREUR] Timeout - Gemini prend trop de temps a repondre."
+                
+            except Exception as e:
+                error_str = str(e)
+                print(f"[GEMINI] Erreur lors de la generation: {e}")
+                
+                # Si erreur 504, réessayer
+                if "504" in error_str or "Deadline" in error_str:
+                    if attempt < max_retries - 1:
+                        print(f"[GEMINI] Retry apres erreur 504 (tentative {attempt + 2}/{max_retries})")
+                        await asyncio.sleep(2)  # Attendre 2s avant de réessayer
+                        continue
+                
+                return f"[ERREUR] {error_str}"
+        
+        return "[ERREUR] Echec apres plusieurs tentatives."
     
     async def chat(self, message: str, username: str = "User") -> str:
         """
