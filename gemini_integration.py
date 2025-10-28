@@ -170,46 +170,40 @@ class GeminiAssistant:
                         if hasattr(response, 'candidates') and response.candidates:
                             candidate = response.candidates[0]
                             
-                            # Vérifier si bloqué par safety ou autre
-                            if hasattr(candidate, 'finish_reason') and candidate.finish_reason != 1:  # 1 = STOP (normal)
-                                finish_reason = candidate.finish_reason
-                                print(f"[GEMINI] Reponse incomplete - finish_reason: {finish_reason}")
-                                
-                                # 2 = MAX_TOKENS : réponse tronquée mais utilisable
-                                if finish_reason == 2:
-                                    print(f"[GEMINI] ⚠️ Reponse tronquee (MAX_TOKENS) - extraction partielle")
-                                    # Extraire quand même le texte disponible
-                                    if hasattr(candidate, 'content') and hasattr(candidate.content, 'parts'):
-                                        text_parts = []
-                                        for part in candidate.content.parts:
-                                            if hasattr(part, 'text'):
-                                                text_parts.append(part.text)
-                                        if text_parts:
-                                            result = ''.join(text_parts)
-                                            print(f"[GEMINI] ✅ Reponse partielle extraite ({len(result)} caracteres)")
-                                            return result
-                                
-                                # 3 = SAFETY : bloqué par filtres
-                                elif finish_reason == 3:
-                                    if hasattr(candidate, 'safety_ratings'):
-                                        print(f"[GEMINI] Safety ratings: {candidate.safety_ratings}")
-                                    return "[ERREUR] Contenu bloque par les filtres de securite."
-                                
-                                # Autres raisons
-                                else:
-                                    return f"[ERREUR] Generation incomplete (reason: {finish_reason})."
-                            
-                            # Extraire le texte des parts
+                            # Extraire le texte des parts AVANT de vérifier finish_reason
+                            text_parts = []
                             if hasattr(candidate, 'content') and hasattr(candidate.content, 'parts'):
-                                text_parts = []
                                 for part in candidate.content.parts:
                                     if hasattr(part, 'text'):
                                         text_parts.append(part.text)
+                            
+                            # Vérifier finish_reason
+                            finish_reason = candidate.finish_reason if hasattr(candidate, 'finish_reason') else 1
+                            
+                            # Si on a du texte, le retourner même si finish_reason != 1
+                            if text_parts:
+                                result = ''.join(text_parts)
                                 
-                                if text_parts:
-                                    result = ''.join(text_parts)
-                                    print(f"[GEMINI] ✅ Reponse extraite ({len(result)} caracteres)")
-                                    return result
+                                if finish_reason == 1:
+                                    print(f"[GEMINI] ✅ Reponse complete ({len(result)} caracteres)")
+                                elif finish_reason == 2:
+                                    print(f"[GEMINI] ⚠️ Reponse tronquee MAX_TOKENS ({len(result)} caracteres)")
+                                elif finish_reason == 3:
+                                    print(f"[GEMINI] ⚠️ Reponse avec avertissement SAFETY ({len(result)} caracteres)")
+                                else:
+                                    print(f"[GEMINI] ⚠️ Reponse avec finish_reason={finish_reason} ({len(result)} caracteres)")
+                                
+                                return result
+                            
+                            # Si pas de texte et finish_reason != 1
+                            if finish_reason == 3:
+                                print(f"[GEMINI] ❌ Bloque par SAFETY")
+                                if hasattr(candidate, 'safety_ratings'):
+                                    print(f"[GEMINI] Safety ratings: {candidate.safety_ratings}")
+                                return "[ERREUR] Contenu bloque par les filtres de securite."
+                            elif finish_reason != 1:
+                                print(f"[GEMINI] ❌ Pas de texte - finish_reason: {finish_reason}")
+                                return f"[ERREUR] Generation incomplete (reason: {finish_reason})."
                         
                         # Méthode 2: Essayer response.text (pour compatibilité)
                         try:
