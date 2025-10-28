@@ -214,6 +214,9 @@ class HighriseBot(BaseBot):
         self.reconnect_attempts += 1
         print(f"[DISCONNECT] ⚠️ Connexion perdue! Tentative {self.reconnect_attempts}/{self.max_reconnect_attempts}")
         
+        # Arrêter temporairement les tâches en arrière-plan
+        print("[DISCONNECT] 🛑 Arrêt des tâches en arrière-plan...")
+        
         if self.reconnect_attempts < self.max_reconnect_attempts:
             print(f"[RECONNECT] ⏳ Reconnexion dans {self.reconnect_delay} secondes...")
             await asyncio.sleep(self.reconnect_delay)
@@ -379,6 +382,10 @@ class HighriseBot(BaseBot):
     
     async def declare_love(self):
         """Générer et envoyer une déclaration d'amour"""
+        # Vérifier la connexion
+        if not self.is_connected:
+            return
+        
         if not gemini_assistant or not gemini_assistant.is_configured:
             print("[AMOUR] Gemini non disponible")
             return
@@ -465,6 +472,10 @@ LIMITE: Maximum 130 caracteres. Emojis: 🌹💕✨"""
     
     async def broadcast_news(self):
         """Générer et diffuser une nouvelle ou un fait intéressant"""
+        # Vérifier la connexion
+        if not self.is_connected:
+            return
+        
         if not gemini_assistant or not gemini_assistant.is_configured:
             print("[NEWS] Gemini non disponible")
             return
@@ -535,7 +546,8 @@ Sois captivant et educatif!"""
             print(f"[NEWS] Nouvelle/fait diffuse: {news}")
             
         except Exception as e:
-            print(f"[NEWS] Erreur generation: {e}")
+            if "closing transport" not in str(e).lower():
+                print(f"[NEWS] Erreur generation: {e}")
     
     async def connection_monitor(self):
         """Monitorer la connexion et détecter les déconnexions"""
@@ -570,6 +582,11 @@ Sois captivant et educatif!"""
         
         while True:
             try:
+                # Vérifier si connecté avant d'envoyer
+                if not self.is_connected:
+                    await asyncio.sleep(5)
+                    continue
+                
                 # Faire l'emote floss
                 await self.highrise.send_emote("dance-floss")
                 print("[FLOSS] 💃 Emote floss exécutée")
@@ -578,7 +595,8 @@ Sois captivant et educatif!"""
                 await asyncio.sleep(10)
                 
             except Exception as e:
-                print(f"[FLOSS] Erreur: {e}")
+                if "closing transport" not in str(e).lower():
+                    print(f"[FLOSS] Erreur: {e}")
                 # Attendre un peu plus en cas d'erreur
                 await asyncio.sleep(15)
     
