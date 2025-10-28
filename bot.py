@@ -108,6 +108,18 @@ class HighriseBot(BaseBot):
         self.heartbeat_task = None
         self.is_connected = False
         
+        # 🎭 Analyse d'humeur de la room
+        self.room_messages = []  # Derniers messages pour analyse
+        self.room_mood = "neutral"  # neutral, happy, sad, energetic, calm
+        self.mood_check_interval = 300  # 5 minutes
+        self.mood_task = None
+        
+        # 🧠 Mémoire contextuelle des utilisateurs
+        self.user_memory = {}  # user_id: {conversations, preferences, history}
+        
+        # 👔 Historique des analyses de style
+        self.style_analyses = {}  # user_id: dernière analyse
+        
     def is_admin(self, user: User) -> bool:
         """Vérifier si un utilisateur est admin (par username)"""
         return user.username.lower() in self.admins
@@ -205,6 +217,10 @@ class HighriseBot(BaseBot):
         self.heartbeat_task = asyncio.create_task(self.connection_monitor())
         print("[MONITOR] Monitoring de connexion activé")
         
+        # Démarrer l'analyse d'humeur de la room
+        self.mood_task = asyncio.create_task(self.mood_analyzer())
+        print("[MOOD] 🎭 Analyse d'humeur activée (toutes les 5 min)")
+        
         # Réinitialiser le compteur de reconnexion après connexion réussie
         self.reconnect_attempts = 0
     
@@ -232,6 +248,19 @@ class HighriseBot(BaseBot):
         
         self.init_user_stats(user.id)
         self.user_stats[user.id]['messages'] += 1
+        
+        # 🧠 Enregistrer le message pour la mémoire contextuelle
+        self.save_to_memory(user, message)
+        
+        # 🎭 Enregistrer le message pour l'analyse d'humeur
+        self.room_messages.append({
+            'user': user.username,
+            'message': message,
+            'timestamp': time.time()
+        })
+        # Garder seulement les 50 derniers messages
+        if len(self.room_messages) > 50:
+            self.room_messages = self.room_messages[-50:]
         
         # Commandes admin uniquement (préfixées par !admin)
         if message.startswith('!admin'):
@@ -576,6 +605,112 @@ Sois captivant et educatif!"""
                 print(f"[MONITOR] Erreur monitoring: {e}")
                 await asyncio.sleep(60)
     
+    # ==================== FONCTIONNALITÉS FUTURISTES ====================
+    
+    async def mood_analyzer(self):
+        """🎭 Analyser l'humeur de la room et adapter le comportement"""
+        print("[MOOD] Démarrage de l'analyseur d'humeur...")
+        
+        while True:
+            try:
+                await asyncio.sleep(self.mood_check_interval)
+                
+                if not self.is_connected or not gemini_assistant:
+                    continue
+                
+                if len(self.room_messages) < 5:
+                    continue
+                
+                # Préparer les messages pour l'analyse
+                recent_messages = self.room_messages[-20:]  # 20 derniers messages
+                messages_text = "\n".join([f"{m['user']}: {m['message']}" for m in recent_messages])
+                
+                # Demander à Gemini d'analyser l'humeur
+                context = """Analyse l'humeur générale de ces messages de chat.
+Réponds UNIQUEMENT par un mot parmi: happy, sad, energetic, calm, neutral
+Critères:
+- happy: beaucoup d'emojis positifs, rires, joie
+- sad: tristesse, problèmes, émotions négatives
+- energetic: excitation, caps lock, beaucoup d'activité
+- calm: discussions posées, philosophiques
+- neutral: mélange ou neutre"""
+                
+                mood = await gemini_assistant.ask(f"Messages:\n{messages_text}", context)
+                mood = mood.strip().lower()
+                
+                if mood in ["happy", "sad", "energetic", "calm", "neutral"]:
+                    old_mood = self.room_mood
+                    self.room_mood = mood
+                    
+                    if old_mood != mood:
+                        print(f"[MOOD] 🎭 Humeur changée: {old_mood} → {mood}")
+                        await self.adapt_to_mood()
+                
+            except Exception as e:
+                if "closing transport" not in str(e).lower():
+                    print(f"[MOOD] Erreur: {e}")
+                await asyncio.sleep(60)
+    
+    async def adapt_to_mood(self):
+        """Adapter le comportement du bot selon l'humeur"""
+        if not self.is_connected:
+            return
+        
+        mood_responses = {
+            "happy": "😊 Je sens une super ambiance ici! Continuez comme ça!",
+            "sad": "💙 Je sens que certains ont besoin de soutien. Je suis là pour vous!",
+            "energetic": "⚡ Wow! L'énergie est au max ici! C'est génial!",
+            "calm": "🧘 J'apprécie cette ambiance zen et posée...",
+            "neutral": "👋 Comment ça va tout le monde?"
+        }
+        
+        response = mood_responses.get(self.room_mood, "")
+        if response:
+            try:
+                await self.highrise.chat(response)
+                print(f"[MOOD] Réponse adaptée envoyée: {self.room_mood}")
+            except:
+                pass
+    
+    def save_to_memory(self, user: User, message: str):
+        """🧠 Sauvegarder dans la mémoire contextuelle"""
+        if user.id not in self.user_memory:
+            self.user_memory[user.id] = {
+                'username': user.username,
+                'conversations': [],
+                'preferences': {},
+                'last_seen': time.time()
+            }
+        
+        # Ajouter le message à l'historique
+        self.user_memory[user.id]['conversations'].append({
+            'message': message,
+            'timestamp': time.time()
+        })
+        
+        # Garder seulement les 20 derniers messages par user
+        if len(self.user_memory[user.id]['conversations']) > 20:
+            self.user_memory[user.id]['conversations'] = self.user_memory[user.id]['conversations'][-20:]
+        
+        self.user_memory[user.id]['last_seen'] = time.time()
+    
+    def get_user_context(self, user: User) -> str:
+        """Récupérer le contexte d'un utilisateur pour des réponses personnalisées"""
+        if user.id not in self.user_memory:
+            return ""
+        
+        memory = self.user_memory[user.id]
+        recent_convs = memory['conversations'][-5:]  # 5 derniers messages
+        
+        if not recent_convs:
+            return ""
+        
+        context = f"Historique récent de {user.username}:\n"
+        for conv in recent_convs:
+            context += f"- {conv['message']}\n"
+        
+        return context
+    
     async def floss_loop(self):
         """Exécuter l'emote floss en boucle indéfiniment"""
         print("[FLOSS] Démarrage de la boucle floss...")
@@ -701,12 +836,16 @@ Utilise des mots doux : "ma belle", metaphores tendres et sensuelles.
 LIMITE: Maximum 135 caracteres (pour chat public).
 Sois sincere, doux, sensuel et poetique. Emojis: 💕✨🌹"""
             elif is_whisper:
-                # Contexte pour DM : réponses détaillées et polies
+                # 🧠 Récupérer le contexte de l'utilisateur
+                user_context = self.get_user_context(user)
+                context_info = f"\n{user_context}" if user_context else ""
+                
+                # Contexte pour DM : réponses détaillées et polies avec mémoire
                 context = f"""Tu es Savant, un assistant IA sympathique et utile dans le jeu Highrise.
 Tu donnes des reponses completes et detaillees.
 LIMITE STRICTE: Maximum 230 caracteres (compte les caracteres!).
 Tu es poli, amical et tu utilises des emojis.
-Tu discutes en prive avec {user.username}.
+Tu discutes en prive avec {user.username}.{context_info}
 Optimise chaque mot pour rester sous 230 caracteres tout en etant precis."""
             else:
                 # Contexte pour chat public : réponses concises et polies
@@ -820,6 +959,8 @@ Sois precis en peu de mots, reste sous 110 caracteres."""
                     await self.cmd_search_item(user, subparams)
                 elif subcmd == 'analyzeoutfit':
                     await self.cmd_analyze_outfit(user, subparams)
+                elif subcmd == 'styleguide':
+                    await self.cmd_style_guide(user, subparams)
                 elif subcmd == 'checkoutfit':
                     await self.cmd_check_outfit(user, subparams)
                 elif subcmd == 'modifyoutfit':
@@ -1513,6 +1654,83 @@ Sois precis en peu de mots, reste sous 110 caracteres."""
             
         except Exception as e:
             print(f"[ERREUR] Copy outfit: {e}")
+            import traceback
+            traceback.print_exc()
+            await self.highrise.send_whisper(user.id, f"Erreur: {e}")
+    
+    async def cmd_style_guide(self, user: User, params):
+        """👔 Assistant de style IA - Analyser et conseiller sur un outfit"""
+        if not params:
+            await self.highrise.send_whisper(user.id, "Usage: !admin styleguide <username>")
+            return
+        
+        if not gemini_assistant or not gemini_assistant.is_configured:
+            await self.highrise.send_whisper(user.id, "❌ Gemini non disponible")
+            return
+        
+        target_username = params[0].lower()
+        
+        try:
+            # Trouver l'utilisateur
+            room_users = await self.highrise.get_room_users()
+            target_user = None
+            
+            for room_user, _ in room_users.content:
+                if room_user.username.lower() == target_username:
+                    target_user = room_user
+                    break
+            
+            if not target_user:
+                await self.highrise.send_whisper(user.id, f"❌ Utilisateur '{params[0]}' non trouvé")
+                return
+            
+            # Récupérer l'outfit
+            outfit_response = await self.highrise.get_user_outfit(target_user.id)
+            outfit_items = list(outfit_response.outfit)
+            
+            # Préparer la description de l'outfit pour Gemini
+            outfit_desc = []
+            for item in outfit_items:
+                category = item.id.split('-')[0] if '-' in item.id else 'unknown'
+                outfit_desc.append(f"{category}: {item.id} (couleur: {item.active_palette})")
+            
+            outfit_text = "\n".join(outfit_desc)
+            
+            # Demander à Gemini d'analyser le style
+            context = f"""Tu es un expert en mode et style dans Highrise.
+Analyse cet outfit et donne des conseils constructifs:
+
+{outfit_text}
+
+Donne:
+1. Style général (ex: casual, élégant, sportif, etc.)
+2. Points forts (2-3 éléments qui fonctionnent bien)
+3. Suggestions d'amélioration (1-2 conseils concrets)
+
+Sois positif, constructif et précis.
+Maximum 200 caractères au total."""
+            
+            print(f"[STYLE] Analyse de l'outfit de {target_user.username}...")
+            analysis = await gemini_assistant.ask(f"Analyse l'outfit de {target_user.username}", context)
+            
+            # Limiter la longueur
+            if len(analysis) > 245:
+                analysis = analysis[:242] + "..."
+            
+            # Sauvegarder l'analyse
+            self.style_analyses[target_user.id] = {
+                'analysis': analysis,
+                'timestamp': time.time()
+            }
+            
+            # Envoyer l'analyse
+            await self.highrise.send_whisper(user.id, 
+                f"👔 ANALYSE DE STYLE: {target_user.username}\n\n{analysis}")
+            
+            print(f"[STYLE] ✅ Analyse envoyée pour {target_user.username}")
+            
+        except Exception as e:
+            print(f"[ERREUR] Style guide: {e}")
             import traceback
             traceback.print_exc()
             await self.highrise.send_whisper(user.id, f"Erreur: {e}")
