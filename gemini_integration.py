@@ -63,7 +63,7 @@ class GeminiAssistant:
                         'temperature': 0.7,
                         'top_p': 0.95,
                         'top_k': 40,
-                        'max_output_tokens': 256,
+                        'max_output_tokens': 512,  # Augmenté de 256 à 512
                     }
                     
                     # Safety settings plus permissifs pour le contenu romantique
@@ -170,12 +170,34 @@ class GeminiAssistant:
                         if hasattr(response, 'candidates') and response.candidates:
                             candidate = response.candidates[0]
                             
-                            # Vérifier si bloqué par safety
+                            # Vérifier si bloqué par safety ou autre
                             if hasattr(candidate, 'finish_reason') and candidate.finish_reason != 1:  # 1 = STOP (normal)
-                                print(f"[GEMINI] Reponse bloquee - finish_reason: {candidate.finish_reason}")
-                                if hasattr(candidate, 'safety_ratings'):
-                                    print(f"[GEMINI] Safety ratings: {candidate.safety_ratings}")
-                                return "[ERREUR] Contenu bloque par les filtres de securite."
+                                finish_reason = candidate.finish_reason
+                                print(f"[GEMINI] Reponse incomplete - finish_reason: {finish_reason}")
+                                
+                                # 2 = MAX_TOKENS : réponse tronquée mais utilisable
+                                if finish_reason == 2:
+                                    print(f"[GEMINI] ⚠️ Reponse tronquee (MAX_TOKENS) - extraction partielle")
+                                    # Extraire quand même le texte disponible
+                                    if hasattr(candidate, 'content') and hasattr(candidate.content, 'parts'):
+                                        text_parts = []
+                                        for part in candidate.content.parts:
+                                            if hasattr(part, 'text'):
+                                                text_parts.append(part.text)
+                                        if text_parts:
+                                            result = ''.join(text_parts)
+                                            print(f"[GEMINI] ✅ Reponse partielle extraite ({len(result)} caracteres)")
+                                            return result
+                                
+                                # 3 = SAFETY : bloqué par filtres
+                                elif finish_reason == 3:
+                                    if hasattr(candidate, 'safety_ratings'):
+                                        print(f"[GEMINI] Safety ratings: {candidate.safety_ratings}")
+                                    return "[ERREUR] Contenu bloque par les filtres de securite."
+                                
+                                # Autres raisons
+                                else:
+                                    return f"[ERREUR] Generation incomplete (reason: {finish_reason})."
                             
                             # Extraire le texte des parts
                             if hasattr(candidate, 'content') and hasattr(candidate.content, 'parts'):
