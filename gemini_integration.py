@@ -166,21 +166,45 @@ class GeminiAssistant:
                 # Extraire le texte de la réponse avec gestion des erreurs
                 if response:
                     try:
-                        # Essayer d'accéder au texte
-                        if hasattr(response, 'text') and response.text:
+                        # Debug: afficher la structure de la réponse
+                        print(f"[GEMINI DEBUG] Response type: {type(response)}")
+                        print(f"[GEMINI DEBUG] Has text: {hasattr(response, 'text')}")
+                        print(f"[GEMINI DEBUG] Has candidates: {hasattr(response, 'candidates')}")
+                        
+                        if hasattr(response, 'candidates') and response.candidates:
+                            print(f"[GEMINI DEBUG] Candidates count: {len(response.candidates)}")
+                            candidate = response.candidates[0]
+                            print(f"[GEMINI DEBUG] Candidate finish_reason: {candidate.finish_reason if hasattr(candidate, 'finish_reason') else 'N/A'}")
+                            
+                            # Vérifier si bloqué par safety
+                            if hasattr(candidate, 'finish_reason') and candidate.finish_reason != 1:  # 1 = STOP (normal)
+                                print(f"[GEMINI] Reponse bloquee - finish_reason: {candidate.finish_reason}")
+                                if hasattr(candidate, 'safety_ratings'):
+                                    print(f"[GEMINI] Safety ratings: {candidate.safety_ratings}")
+                                return "[ERREUR] Contenu bloque par les filtres de securite."
+                            
+                            # Extraire le texte du candidat
+                            if hasattr(candidate, 'content') and hasattr(candidate.content, 'parts'):
+                                text_parts = [part.text for part in candidate.content.parts if hasattr(part, 'text')]
+                                if text_parts:
+                                    return ''.join(text_parts)
+                        
+                        # Essayer l'accès direct au texte
+                        if hasattr(response, 'text'):
                             return response.text
-                        # Si bloqué par les filtres de sécurité
-                        elif hasattr(response, 'prompt_feedback'):
-                            print(f"[GEMINI] Reponse bloquee par les filtres de securite")
-                            return "[ERREUR] Contenu bloque par les filtres de securite."
-                        # Si candidates vide
-                        elif hasattr(response, 'candidates') and not response.candidates:
-                            print(f"[GEMINI] Aucun candidat de reponse")
-                            return "[ERREUR] Aucune reponse generee."
-                        else:
-                            return "[ERREUR] Format de reponse invalide."
+                        
+                        # Si aucune méthode ne fonctionne
+                        print(f"[GEMINI] Structure reponse: {dir(response)}")
+                        return "[ERREUR] Impossible d'extraire le texte de la reponse."
+                        
+                    except AttributeError as attr_error:
+                        print(f"[GEMINI] AttributeError: {attr_error}")
+                        print(f"[GEMINI] Response structure: {dir(response)}")
+                        return "[ERREUR] Format de reponse incompatible."
                     except Exception as text_error:
                         print(f"[GEMINI] Erreur extraction texte: {text_error}")
+                        import traceback
+                        traceback.print_exc()
                         return "[ERREUR] Impossible d'extraire la reponse."
                 else:
                     return "[ERREUR] Aucune reponse generee."
