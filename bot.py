@@ -621,9 +621,10 @@ Sois captivant et educatif!"""
                 if len(self.room_messages) < 5:
                     continue
                 
-                # Préparer les messages pour l'analyse
-                recent_messages = self.room_messages[-20:]  # 20 derniers messages
-                messages_text = "\n".join([f"{m['user']}: {m['message']}" for m in recent_messages])
+                # Préparer les messages pour l'analyse (réduit pour éviter timeout)
+                recent_messages = self.room_messages[-10:]  # Réduit à 10 messages
+                # Limiter chaque message à 50 caractères
+                messages_text = "\n".join([f"{m['user']}: {m['message'][:50]}" for m in recent_messages])
                 
                 # Demander à Gemini d'analyser l'humeur
                 context = """Analyse l'humeur générale de ces messages de chat.
@@ -700,14 +701,20 @@ Critères:
             return ""
         
         memory = self.user_memory[user.id]
-        recent_convs = memory['conversations'][-5:]  # 5 derniers messages
+        recent_convs = memory['conversations'][-3:]  # Réduit à 3 messages (au lieu de 5)
         
         if not recent_convs:
             return ""
         
-        context = f"Historique récent de {user.username}:\n"
-        for conv in recent_convs:
-            context += f"- {conv['message']}\n"
+        # Contexte ultra-court pour éviter les timeouts
+        context = f"Contexte {user.username}: "
+        # Limiter chaque message à 30 caractères max
+        messages = [conv['message'][:30] for conv in recent_convs]
+        context += ", ".join(messages)
+        
+        # Limiter le contexte total à 100 caractères
+        if len(context) > 100:
+            context = context[:97] + "..."
         
         return context
     
