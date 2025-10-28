@@ -66,9 +66,30 @@ class GeminiAssistant:
                         'max_output_tokens': 256,
                     }
                     
+                    # Safety settings plus permissifs pour le contenu romantique
+                    safety_settings = [
+                        {
+                            "category": "HARM_CATEGORY_HARASSMENT",
+                            "threshold": "BLOCK_ONLY_HIGH"
+                        },
+                        {
+                            "category": "HARM_CATEGORY_HATE_SPEECH",
+                            "threshold": "BLOCK_ONLY_HIGH"
+                        },
+                        {
+                            "category": "HARM_CATEGORY_SEXUALLY_EXPLICIT",
+                            "threshold": "BLOCK_ONLY_HIGH"
+                        },
+                        {
+                            "category": "HARM_CATEGORY_DANGEROUS_CONTENT",
+                            "threshold": "BLOCK_ONLY_HIGH"
+                        }
+                    ]
+                    
                     self.model = genai.GenerativeModel(
                         model_name,
-                        generation_config=generation_config
+                        generation_config=generation_config,
+                        safety_settings=safety_settings
                     )
                     self.is_configured = True
                     model_loaded = True
@@ -142,9 +163,25 @@ class GeminiAssistant:
                     timeout=15.0  # 15 secondes max
                 )
                 
-                # Extraire le texte de la réponse
-                if response and response.text:
-                    return response.text
+                # Extraire le texte de la réponse avec gestion des erreurs
+                if response:
+                    try:
+                        # Essayer d'accéder au texte
+                        if hasattr(response, 'text') and response.text:
+                            return response.text
+                        # Si bloqué par les filtres de sécurité
+                        elif hasattr(response, 'prompt_feedback'):
+                            print(f"[GEMINI] Reponse bloquee par les filtres de securite")
+                            return "[ERREUR] Contenu bloque par les filtres de securite."
+                        # Si candidates vide
+                        elif hasattr(response, 'candidates') and not response.candidates:
+                            print(f"[GEMINI] Aucun candidat de reponse")
+                            return "[ERREUR] Aucune reponse generee."
+                        else:
+                            return "[ERREUR] Format de reponse invalide."
+                    except Exception as text_error:
+                        print(f"[GEMINI] Erreur extraction texte: {text_error}")
+                        return "[ERREUR] Impossible d'extraire la reponse."
                 else:
                     return "[ERREUR] Aucune reponse generee."
                     
