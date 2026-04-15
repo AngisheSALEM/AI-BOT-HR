@@ -299,11 +299,7 @@ Dans `emotes.py`, ajoutez dans le dictionnaire `EMOTES`.
 
 ## 📞 Support
 
-Si vous avez des problèmes :
-1. Vérifiez les logs dans le terminal
-2. Vérifiez que Python est bien installé
-3. Vérifiez que les dépendances sont installées
-4. Vérifiez le fichier `.env`
+
 
 ## 🎉 C'est Prêt !
 
